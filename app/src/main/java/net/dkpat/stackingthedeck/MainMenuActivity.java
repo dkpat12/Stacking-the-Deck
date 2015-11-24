@@ -9,11 +9,24 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.parse.Parse;
+import com.parse.ParseObject;
+
 public class MainMenuActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Enable Local Data store.
+        Parse.enableLocalDatastore(this);
+        Parse.initialize(this, "bJf7mjyx0RcZj56kg4ntIjO8iSoI2CZoAoWMnPvk", "693A3ZtX0ppLIHqBY6pF60YUWLJcii4ax9Tphmwi");
+
+        // Testing Parse Objects
+        ParseObject testObject = new ParseObject("TestObject");
+        testObject.put("foo", "bar");
+        testObject.saveInBackground();
+
         setContentView(R.layout.activity_main_menu);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
