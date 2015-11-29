@@ -13,8 +13,7 @@ import android.view.ViewGroup;
 import net.dkpat.stackingthedeck.dummy.DummyContent;
 import net.dkpat.stackingthedeck.dummy.DummyContent.DummyItem;
 import net.dkpat.stackingthedeck.helpers.DividerItemDecoration;
-
-import java.util.List;
+import net.dkpat.stackingthedeck.helpers.MyDeckRecyclerViewAdapter;
 
 /**
  * A fragment representing a list of Items.

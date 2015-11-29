@@ -1,4 +1,4 @@
-package net.dkpat.stackingthedeck;
+package net.dkpat.stackingthedeck.helpers;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import net.dkpat.stackingthedeck.DeckFragment.OnListFragmentInteractionListener;
+import net.dkpat.stackingthedeck.R;
 import net.dkpat.stackingthedeck.dummy.DummyContent.DummyItem;
 
 import java.util.List;
