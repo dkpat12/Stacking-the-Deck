@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 
 import net.dkpat.stackingthedeck.dummy.DummyContent;
 import net.dkpat.stackingthedeck.dummy.DummyContent.DummyItem;
+import net.dkpat.stackingthedeck.helpers.DividerItemDecoration;
 
 import java.util.List;
 
@@ -64,6 +65,10 @@ public class DeckFragment extends Fragment {
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
             RecyclerView recyclerView = (RecyclerView) view;
+
+            //Add Divider line between decks
+            recyclerView.addItemDecoration(
+                    new DividerItemDecoration(getActivity(), null));
             if (mColumnCount <= 1) {
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
             } else {
