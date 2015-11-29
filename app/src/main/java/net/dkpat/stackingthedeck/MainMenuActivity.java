@@ -4,7 +4,9 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -55,5 +57,12 @@ public class MainMenuActivity extends AppCompatActivity implements DeckFragment.
     @Override
     public void onListFragmentInteraction(DummyContent.DummyItem item) {
         return ;
+    }
+
+    public void showDeckMenu(View v) {
+        PopupMenu popup = new PopupMenu(this, v);
+        MenuInflater inflater = popup.getMenuInflater();
+        inflater.inflate(R.menu.menu_deck_context, popup.getMenu());
+        popup.show();
     }
 }

@@ -27,8 +27,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end"
         android:padding="16dp"
-        android:src="@drawable/ic_dots_vertical_black_24dp"
+        android:src="@drawable/ic_dots_vertical_grey600_24dp"
         android:contentDescription="Deck Context Menu"
         android:background="#00ffffff"
-        android:clickable="true" />
+        android:onClick="showDeckMenu"/>
 </LinearLayout>
