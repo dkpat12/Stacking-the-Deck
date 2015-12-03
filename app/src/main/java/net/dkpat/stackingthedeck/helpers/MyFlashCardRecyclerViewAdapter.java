@@ -7,22 +7,23 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import net.dkpat.stackingthedeck.FlashCardFragment.OnFlashCardListFragmentInteractionListener;
+import net.dkpat.stackingthedeck.Model.Flashcard;
+import net.dkpat.stackingthedeck.Model.Flashcard.FlashcardItem;
 import net.dkpat.stackingthedeck.R;
-import net.dkpat.stackingthedeck.dummy.DummyContent.DummyItem;
 
 import java.util.List;
 
 /**
- * {@link RecyclerView.Adapter} that can display a {@link DummyItem} and makes a call to the
+ * {@link RecyclerView.Adapter} that can display a {@link FlashcardItem} and makes a call to the
  * specified {@link OnFlashCardListFragmentInteractionListener}.
  * TODO: Replace the implementation with code for your data type.
  */
 public class MyFlashCardRecyclerViewAdapter extends RecyclerView.Adapter<MyFlashCardRecyclerViewAdapter.ViewHolder> {
 
-    private final List<DummyItem> mValues;
+    private final List<FlashcardItem> mValues;
     private final OnFlashCardListFragmentInteractionListener mListener;
 
-    public MyFlashCardRecyclerViewAdapter(List<DummyItem> items, OnFlashCardListFragmentInteractionListener listener) {
+    public MyFlashCardRecyclerViewAdapter(List<FlashcardItem> items, OnFlashCardListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -38,7 +39,7 @@ public class MyFlashCardRecyclerViewAdapter extends RecyclerView.Adapter<MyFlash
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
         holder.mIdView.setText(mValues.get(position).id);
-        holder.mContentView.setText(mValues.get(position).content);
+        holder.mContentView.setText(mValues.get(position).term);
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,7 +62,7 @@ public class MyFlashCardRecyclerViewAdapter extends RecyclerView.Adapter<MyFlash
         public final View mView;
         public final TextView mIdView;
         public final TextView mContentView;
-        public DummyItem mItem;
+        public FlashcardItem mItem;
 
         public ViewHolder(View view) {
             super(view);

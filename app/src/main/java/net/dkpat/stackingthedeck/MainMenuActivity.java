@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import net.dkpat.stackingthedeck.Model.Deck;
+import net.dkpat.stackingthedeck.Model.Flashcard;
 
 public class MainMenuActivity extends AppCompatActivity implements DeckFragment.OnDeckListFragmentInteractionListener,
         FlashCardFragment.OnFlashCardListFragmentInteractionListener {
@@ -73,4 +74,8 @@ public class MainMenuActivity extends AppCompatActivity implements DeckFragment.
     }
 
 
+    @Override
+    public void onListFragmentInteraction(Flashcard.FlashcardItem item) {
+        return ;
+    }
 }

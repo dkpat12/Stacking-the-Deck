@@ -10,8 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import net.dkpat.stackingthedeck.dummy.DummyContent;
-import net.dkpat.stackingthedeck.dummy.DummyContent.DummyItem;
+
+import net.dkpat.stackingthedeck.Model.Flashcard.FlashcardItem;
+import net.dkpat.stackingthedeck.Model.Flashcard;
 import net.dkpat.stackingthedeck.helpers.DividerItemDecoration;
 import net.dkpat.stackingthedeck.helpers.MyFlashCardRecyclerViewAdapter;
 
@@ -69,7 +70,7 @@ public class FlashCardFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MyFlashCardRecyclerViewAdapter(DummyContent.ITEMS, mListener));
+            recyclerView.setAdapter(new MyFlashCardRecyclerViewAdapter(Flashcard.ITEMS, mListener));
         }
         return view;
     }
@@ -104,6 +105,6 @@ public class FlashCardFragment extends Fragment {
      */
     public interface OnFlashCardListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(DummyItem item);
+        void onListFragmentInteraction(FlashcardItem item);
     }
 }
