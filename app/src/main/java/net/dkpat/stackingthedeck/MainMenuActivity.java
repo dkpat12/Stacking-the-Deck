@@ -10,9 +10,8 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.Window;
 
-import net.dkpat.stackingthedeck.dummy.DummyContent;
+import net.dkpat.stackingthedeck.Model.Deck;
 
 public class MainMenuActivity extends AppCompatActivity implements DeckFragment.OnListFragmentInteractionListener {
 
@@ -59,7 +58,7 @@ public class MainMenuActivity extends AppCompatActivity implements DeckFragment.
     }
 
     @Override
-    public void onListFragmentInteraction(DummyContent.DummyItem item) {
+    public void onListFragmentInteraction(Deck.DeckItem item) {
         return ;
     }
 

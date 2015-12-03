@@ -10,8 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import net.dkpat.stackingthedeck.dummy.DummyContent;
-import net.dkpat.stackingthedeck.dummy.DummyContent.DummyItem;
+import net.dkpat.stackingthedeck.Model.Deck;
+import net.dkpat.stackingthedeck.Model.Deck.DeckItem;
 import net.dkpat.stackingthedeck.helpers.DividerItemDecoration;
 import net.dkpat.stackingthedeck.helpers.MyDeckRecyclerViewAdapter;
 
@@ -73,7 +73,7 @@ public class DeckFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MyDeckRecyclerViewAdapter(DummyContent.ITEMS, mListener));
+            recyclerView.setAdapter(new MyDeckRecyclerViewAdapter(Deck.ITEMS, mListener));
         }
         return view;
     }
@@ -108,6 +108,6 @@ public class DeckFragment extends Fragment {
      */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(DummyItem item);
+        void onListFragmentInteraction(DeckItem item);
     }
 }
