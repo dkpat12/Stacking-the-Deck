@@ -13,33 +13,33 @@ import android.view.ViewGroup;
 import net.dkpat.stackingthedeck.dummy.DummyContent;
 import net.dkpat.stackingthedeck.dummy.DummyContent.DummyItem;
 import net.dkpat.stackingthedeck.helpers.DividerItemDecoration;
-import net.dkpat.stackingthedeck.helpers.MyDeckRecyclerViewAdapter;
+import net.dkpat.stackingthedeck.helpers.MyFlashCardRecyclerViewAdapter;
 
 /**
  * A fragment representing a list of Items.
  * <p/>
- * Activities containing this fragment MUST implement the {@link OnDeckListFragmentInteractionListener}
+ * Activities containing this fragment MUST implement the {@link OnFlashCardListFragmentInteractionListener}
  * interface.
  */
-public class DeckFragment extends Fragment {
+public class FlashCardFragment extends Fragment {
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
     private int mColumnCount = 1;
-    private OnDeckListFragmentInteractionListener mListener;
+    private OnFlashCardListFragmentInteractionListener mListener;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public DeckFragment() {
+    public FlashCardFragment() {
     }
 
     // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
-    public static DeckFragment newInstance(int columnCount) {
-        DeckFragment fragment = new DeckFragment();
+    public static FlashCardFragment newInstance(int columnCount) {
+        FlashCardFragment fragment = new FlashCardFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_COLUMN_COUNT, columnCount);
         fragment.setArguments(args);
@@ -58,22 +58,18 @@ public class DeckFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_deck_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_flashcard_list, container, false);
 
         // Set the adapter
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
             RecyclerView recyclerView = (RecyclerView) view;
-
-            //Add Divider line between decks
-            recyclerView.addItemDecoration(
-                    new DividerItemDecoration(getActivity(), null));
             if (mColumnCount <= 1) {
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MyDeckRecyclerViewAdapter(DummyContent.ITEMS, mListener));
+            recyclerView.setAdapter(new MyFlashCardRecyclerViewAdapter(DummyContent.ITEMS, mListener));
         }
         return view;
     }
@@ -82,8 +78,8 @@ public class DeckFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnDeckListFragmentInteractionListener) {
-            mListener = (OnDeckListFragmentInteractionListener) context;
+        if (context instanceof OnFlashCardListFragmentInteractionListener) {
+            mListener = (OnFlashCardListFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnListFragmentInteractionListener");
@@ -106,7 +102,7 @@ public class DeckFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnDeckListFragmentInteractionListener {
+    public interface OnFlashCardListFragmentInteractionListener {
         // TODO: Update argument type and name
         void onListFragmentInteraction(DummyItem item);
     }
