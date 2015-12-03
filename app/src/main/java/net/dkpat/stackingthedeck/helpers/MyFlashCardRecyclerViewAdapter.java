@@ -6,25 +6,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import net.dkpat.stackingthedeck.DeckFragment;
-import net.dkpat.stackingthedeck.DeckFragment.OnDeckListFragmentInteractionListener;
+import net.dkpat.stackingthedeck.FlashCardFragment.OnFlashCardListFragmentInteractionListener;
 import net.dkpat.stackingthedeck.R;
-import net.dkpat.stackingthedeck.Model.Deck.DeckItem;
+import net.dkpat.stackingthedeck.dummy.DummyContent.DummyItem;
 
 import java.util.List;
 
 /**
- * {@link RecyclerView.Adapter} that can display a {@link DeckItem} and makes a call to the
- * specified {@link OnDeckListFragmentInteractionListener}.
+ * {@link RecyclerView.Adapter} that can display a {@link DummyItem} and makes a call to the
+ * specified {@link OnFlashCardListFragmentInteractionListener}.
  * TODO: Replace the implementation with code for your data type.
  */
-public class MyDeckRecyclerViewAdapter extends RecyclerView.Adapter<MyDeckRecyclerViewAdapter.ViewHolder> {
+public class MyFlashCardRecyclerViewAdapter extends RecyclerView.Adapter<MyFlashCardRecyclerViewAdapter.ViewHolder> {
 
-    private final List<DeckItem> mValues;
-    private final OnDeckListFragmentInteractionListener mListener;
+    private final List<DummyItem> mValues;
+    private final OnFlashCardListFragmentInteractionListener mListener;
 
-    public MyDeckRecyclerViewAdapter(List<DeckItem> items, OnDeckListFragmentInteractionListener listener) {
-
+    public MyFlashCardRecyclerViewAdapter(List<DummyItem> items, OnFlashCardListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -32,15 +30,15 @@ public class MyDeckRecyclerViewAdapter extends RecyclerView.Adapter<MyDeckRecycl
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_deck_list_item, parent, false);
+                .inflate(R.layout.fragment_flashcard_list_item, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).deckID);
-        holder.mContentView.setText(mValues.get(position).deckName);
+        holder.mIdView.setText(mValues.get(position).id);
+        holder.mContentView.setText(mValues.get(position).content);
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,13 +61,13 @@ public class MyDeckRecyclerViewAdapter extends RecyclerView.Adapter<MyDeckRecycl
         public final View mView;
         public final TextView mIdView;
         public final TextView mContentView;
-        public DeckItem mItem;
+        public DummyItem mItem;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
             mIdView = (TextView) view.findViewById(R.id.id);
-            mContentView = (TextView) view.findViewById(R.id.content);
+            mContentView = (TextView) view.findViewById(R.id.term);
         }
 
         @Override

@@ -13,7 +13,8 @@ import android.view.MenuItem;
 
 import net.dkpat.stackingthedeck.Model.Deck;
 
-public class MainMenuActivity extends AppCompatActivity implements DeckFragment.OnListFragmentInteractionListener {
+public class MainMenuActivity extends AppCompatActivity implements DeckFragment.OnDeckListFragmentInteractionListener,
+        FlashCardFragment.OnFlashCardListFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,10 +58,12 @@ public class MainMenuActivity extends AppCompatActivity implements DeckFragment.
         return super.onOptionsItemSelected(item);
     }
 
+
     @Override
     public void onListFragmentInteraction(Deck.DeckItem item) {
         return ;
     }
+
 
     public void showDeckMenu(View v) {
         PopupMenu popup = new PopupMenu(this, v);
@@ -68,4 +71,6 @@ public class MainMenuActivity extends AppCompatActivity implements DeckFragment.
         inflater.inflate(R.menu.menu_deck_context, popup.getMenu());
         popup.show();
     }
+
+
 }
