@@ -10,8 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import net.dkpat.stackingthedeck.dummy.DummyContent;
-import net.dkpat.stackingthedeck.dummy.DummyContent.DummyItem;
 import net.dkpat.stackingthedeck.helpers.DividerItemDecoration;
 import net.dkpat.stackingthedeck.helpers.MyDeckRecyclerViewAdapter;
 
