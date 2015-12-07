@@ -1,13 +1,18 @@
 <resources>
     <string name="app_name">Stack The Deck</string>
     <string name="action_settings">Settings</string>
+
     <string name="action_rename">Rename</string>
     <string name="action_delete">Delete</string>
     <string name="action_edit_deck">Edit Deck</string>
     <string name="action_add_card">Add a Card</string>
     <string name="action_share">Share</string>
 
-
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="profile_title_logged_in">You are logged in as</string>
+    <string name="profile_logout_button_label">Log out</string>
+    <string name="profile_title_logged_out">You must be logged in to view your profile</string>
+    <string name="profile_login_button_label">Log in</string>
 </resources>
