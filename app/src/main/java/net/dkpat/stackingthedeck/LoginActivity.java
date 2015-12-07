@@ -1,22 +1,15 @@
 package net.dkpat.stackingthedeck;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.parse.Parse;
-import com.parse.ParseObject;
 import com.parse.ParseUser;
 import com.parse.ui.ParseLoginBuilder;
 
-public class MainMenuActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     private static final int LOGIN_REQUEST = 0;
 
@@ -49,7 +42,7 @@ public class MainMenuActivity extends AppCompatActivity {
                 } else {
                     // User clicked to log in.
                     ParseLoginBuilder loginBuilder = new ParseLoginBuilder(
-                            MainMenuActivity.this);
+                            LoginActivity.this);
                     startActivityForResult(loginBuilder.build(), LOGIN_REQUEST);
                 }
             }
