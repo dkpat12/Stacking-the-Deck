@@ -24,7 +24,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_main_menu);
+        setContentView(R.layout.activity_login);
         titleTextView = (TextView) findViewById(R.id.profile_title);
         emailTextView = (TextView) findViewById(R.id.profile_email);
         nameTextView = (TextView) findViewById(R.id.profile_name);
