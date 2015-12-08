@@ -27,6 +27,7 @@ public class FlashcardFragment extends Fragment {
     private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
     private int mColumnCount = 1;
+    private LayoutInflater inflater;
     private OnFlashCardListFragmentInteractionListener mListener;
     private ParseQueryAdapter<Flashcard> flashcardListAdapter;
 
@@ -50,10 +51,20 @@ public class FlashcardFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main_menu);
 
-        if (getArguments() != null) {
-            mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
+        //Set up the Parse query to use in the adapter
+        ParseQueryAdapter.QueryFactory<Flashcard> factory = new ParseQueryAdapter.QueryFactory<Flashcard>() {
+            public  ParseQuery<>
         }
+
+        //Fetch the DeckID from the Extra data
+
+
+
+//        if (getArguments() != null) {
+//            mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
+//        }
     }
 
 
