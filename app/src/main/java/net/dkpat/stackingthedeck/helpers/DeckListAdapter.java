@@ -17,7 +17,7 @@ import net.dkpat.stackingthedeck.R;
 public class DeckListAdapter extends ParseQueryAdapter<Deck> {
 
     public DeckListAdapter(Context context,
-                                ParseQueryAdapter.QueryFactory<Deck> queryFactory) {
+                           ParseQueryAdapter.QueryFactory<Deck> queryFactory) {
         super(context, queryFactory);
     }
 
