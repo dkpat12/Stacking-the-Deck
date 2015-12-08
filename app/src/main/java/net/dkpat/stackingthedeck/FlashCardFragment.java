@@ -11,6 +11,7 @@ import android.widget.ListView;
 import com.parse.ParseQuery;
 import com.parse.ParseQueryAdapter;
 
+import net.dkpat.stackingthedeck.Model.Deck;
 import net.dkpat.stackingthedeck.Model.Flashcard;
 import net.dkpat.stackingthedeck.helpers.FlashcardListAdapter;
 
@@ -23,10 +24,6 @@ import net.dkpat.stackingthedeck.helpers.FlashcardListAdapter;
  */
 public class FlashcardFragment extends Fragment {
 
-    // TODO: Customize parameter argument names
-    private static final String ARG_COLUMN_COUNT = "column-count";
-    // TODO: Customize parameters
-    private int mColumnCount = 1;
     private OnFlashCardListFragmentInteractionListener mListener;
     private ParseQueryAdapter<Flashcard> flashcardListAdapter;
 
@@ -39,21 +36,14 @@ public class FlashcardFragment extends Fragment {
 
     // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
-    public static FlashcardFragment newInstance(int columnCount) {
+    public static FlashcardFragment newInstance(Deck deck) {
         FlashcardFragment fragment = new FlashcardFragment();
-        Bundle args = new Bundle();
-        args.putInt(ARG_COLUMN_COUNT, columnCount);
-        fragment.setArguments(args);
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        if (getArguments() != null) {
-            mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
-        }
     }
 
 

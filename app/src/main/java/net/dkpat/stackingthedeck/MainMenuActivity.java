@@ -3,6 +3,8 @@ package net.dkpat.stackingthedeck;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.Toolbar;
@@ -14,7 +16,7 @@ import android.view.MenuItem;
 import net.dkpat.stackingthedeck.Model.Deck;
 import net.dkpat.stackingthedeck.Model.Flashcard;
 
-public class MainMenuActivity extends AppCompatActivity implements DeckFragment.OnDeckListFragmentInteractionListener,
+public class MainMenuActivity extends AppCompatActivity implements DeckFragment.OnDeckFragmentListener,
         FlashcardFragment.OnFlashCardListFragmentInteractionListener {
 
     @Override
@@ -59,12 +61,13 @@ public class MainMenuActivity extends AppCompatActivity implements DeckFragment.
         return super.onOptionsItemSelected(item);
     }
 
-
     @Override
-    public void onListFragmentInteraction(Deck item) {
-        return ;
+    public void onDeckSelect(Deck item) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragmentContainer, FlashcardFragment.newInstance(item));
+        fragmentTransaction.commit();
     }
-
 
     public void showDeckMenu(View v) {
         PopupMenu popup = new PopupMenu(this, v);
@@ -72,7 +75,6 @@ public class MainMenuActivity extends AppCompatActivity implements DeckFragment.
         inflater.inflate(R.menu.menu_deck_context, popup.getMenu());
         popup.show();
     }
-
 
     @Override
     public void onListFragmentInteraction(Flashcard item) {
