@@ -17,12 +17,14 @@ public class Flashcard extends ParseObject {
     }
 
     //Constructor for setting properties
-    public Flashcard(String id, String term, String definition) {
+    public Flashcard(String id, String term, String definition, Deck parentDeck) {
         super();
 
         //setUUID(id);
         setTerm(term);
         setDefinition(definition);
+        setDeck(parentDeck);
+        //SetOwner(ParseUser);
     }
 
     // Use getString and others to access fields
@@ -54,4 +56,15 @@ public class Flashcard extends ParseObject {
     public void setOwner(ParseUser user) {
         put("owner", user);
     }
+
+    // Get the parent dck for this item
+    public Deck getDeck()  {
+        return (Deck) getParseObject("deck");
+    }
+
+    // Associate each item with a deck
+    public void setDeck(Deck parent) {
+        put("deck", parent);
+    }
+
 }
