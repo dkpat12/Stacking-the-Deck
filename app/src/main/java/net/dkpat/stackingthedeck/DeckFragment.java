@@ -3,18 +3,18 @@ package net.dkpat.stackingthedeck;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
+import com.parse.ParseQuery;
+import com.parse.ParseQueryAdapter;
 
 import net.dkpat.stackingthedeck.Model.Deck;
-import net.dkpat.stackingthedeck.Model.Deck.DeckItem;
-import net.dkpat.stackingthedeck.helpers.DividerItemDecoration;
-import net.dkpat.stackingthedeck.helpers.MyDeckRecyclerViewAdapter;
+import net.dkpat.stackingthedeck.helpers.DeckListAdapter;
+
+
 
 /**
  * A fragment representing a list of Items.
@@ -61,20 +61,23 @@ public class DeckFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_deck_list, container, false);
 
-        // Set the adapter
-        if (view instanceof RecyclerView) {
-            Context context = view.getContext();
-            RecyclerView recyclerView = (RecyclerView) view;
-
-            //Add Divider line between decks
-            recyclerView.addItemDecoration(
-                    new DividerItemDecoration(getActivity(), null));
-            if (mColumnCount <= 1) {
-                recyclerView.setLayoutManager(new LinearLayoutManager(context));
-            } else {
-                recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
+        // Set up the Parse query to use in the adapter
+        ParseQueryAdapter.QueryFactory<Deck> factory = new ParseQueryAdapter.QueryFactory<Deck>() {
+            public ParseQuery<Deck> create() {
+                ParseQuery<Deck> query = ParseQuery.getQuery(Deck.class);
+                query.orderByDescending("name");
+                query.fromLocalDatastore();
+                return query;
             }
-            recyclerView.setAdapter(new MyDeckRecyclerViewAdapter(Deck.ITEMS, mListener));
+        };
+
+
+        // Set the adapter
+        // Parse does not support RecyclerView adapters currently. Should switch code to use Listview
+        if (view instanceof ListView) {
+            Context context = view.getContext();
+            ListView mList = (ListView) view;
+            mList.setAdapter(new DeckListAdapter(this.getContext(), factory ));
         }
         return view;
     }
@@ -109,6 +112,6 @@ public class DeckFragment extends Fragment {
      */
     public interface OnDeckListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(DeckItem item);
+        void onListFragmentInteraction(Deck item);
     }
 }
