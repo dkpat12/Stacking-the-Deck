@@ -67,4 +67,13 @@ public class Flashcard extends ParseObject {
         put("deck", parent);
     }
 
+    //Published to Parse yet?
+    public boolean isDraft() {
+        return getBoolean("isDraft");
+    }
+
+    public void setDraft(boolean isDraft) {
+        put("isDraft", isDraft);
+    }
+
 }

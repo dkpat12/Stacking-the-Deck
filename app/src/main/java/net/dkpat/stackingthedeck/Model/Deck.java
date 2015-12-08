@@ -25,12 +25,12 @@ public class Deck extends ParseObject {
 
     // Use getString and others to access fields
     public String getName() {
-        return getString("definition");
+        return getString("name");
     }
 
     // Use put to modify field values
     public void setName(String value) {
-        put("definition", value);
+        put("name", value);
     }
 
     // Get the user for this item
@@ -42,4 +42,14 @@ public class Deck extends ParseObject {
     public void setOwner(ParseUser user) {
         put("owner", user);
     }
+
+    //Published to Parse yet?
+    public boolean isDraft() {
+        return getBoolean("isDraft");
+    }
+
+    public void setDraft(boolean isDraft) {
+        put("isDraft", isDraft);
+    }
+
 }
