@@ -47,8 +47,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
-    }/*
-//below method currently crashes app
+    }
     @Override
     protected void onStart() {
         super.onStart();
@@ -60,7 +59,7 @@ public class LoginActivity extends AppCompatActivity {
             showProfileLoggedOut();
         }
     }
-*/
+
 
      // Shows the profile of the given user. - currently crashes app when selecting log in
 
