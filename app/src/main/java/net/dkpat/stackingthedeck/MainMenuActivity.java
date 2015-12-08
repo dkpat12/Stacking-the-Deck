@@ -15,7 +15,7 @@ import net.dkpat.stackingthedeck.Model.Deck;
 import net.dkpat.stackingthedeck.Model.Flashcard;
 
 public class MainMenuActivity extends AppCompatActivity implements DeckFragment.OnDeckListFragmentInteractionListener,
-        FlashCardFragment.OnFlashCardListFragmentInteractionListener {
+        FlashcardFragment.OnFlashCardListFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +61,7 @@ public class MainMenuActivity extends AppCompatActivity implements DeckFragment.
 
 
     @Override
-    public void onListFragmentInteraction(Deck.DeckItem item) {
+    public void onListFragmentInteraction(Deck item) {
         return ;
     }
 
@@ -75,7 +75,7 @@ public class MainMenuActivity extends AppCompatActivity implements DeckFragment.
 
 
     @Override
-    public void onListFragmentInteraction(Flashcard.FlashcardItem item) {
+    public void onListFragmentInteraction(Flashcard item) {
         return ;
     }
 }

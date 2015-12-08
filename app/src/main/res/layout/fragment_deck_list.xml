@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ListView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/list"
     android:scrollbars="vertical"
@@ -9,6 +8,6 @@
     android:layout_height="match_parent"
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
-    app:layoutManager="LinearLayoutManager"
     tools:context="net.dkpat.stackingthedeck.DeckFragment"
-    tools:listitem="@layout/fragment_deck_list_item" />
+    tools:listitem="@layout/fragment_deck_list_item"
+    android:drawSelectorOnTop="true" />

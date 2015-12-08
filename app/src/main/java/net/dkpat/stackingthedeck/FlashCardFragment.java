@@ -3,44 +3,44 @@ package net.dkpat.stackingthedeck;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
+import com.parse.ParseQuery;
+import com.parse.ParseQueryAdapter;
 
-import net.dkpat.stackingthedeck.Model.Flashcard.FlashcardItem;
 import net.dkpat.stackingthedeck.Model.Flashcard;
-import net.dkpat.stackingthedeck.helpers.DividerItemDecoration;
-import net.dkpat.stackingthedeck.helpers.MyFlashCardRecyclerViewAdapter;
+import net.dkpat.stackingthedeck.helpers.FlashcardListAdapter;
+
 
 /**
  * A fragment representing a list of Items.
- * <p/>
+ * <p>
  * Activities containing this fragment MUST implement the {@link OnFlashCardListFragmentInteractionListener}
  * interface.
  */
-public class FlashCardFragment extends Fragment {
+public class FlashcardFragment extends Fragment {
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
     private int mColumnCount = 1;
     private OnFlashCardListFragmentInteractionListener mListener;
+    private ParseQueryAdapter<Flashcard> flashcardListAdapter;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public FlashCardFragment() {
+    public FlashcardFragment() {
     }
 
     // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
-    public static FlashCardFragment newInstance(int columnCount) {
-        FlashCardFragment fragment = new FlashCardFragment();
+    public static FlashcardFragment newInstance(int columnCount) {
+        FlashcardFragment fragment = new FlashcardFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_COLUMN_COUNT, columnCount);
         fragment.setArguments(args);
@@ -56,21 +56,29 @@ public class FlashCardFragment extends Fragment {
         }
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_flashcard_list, container, false);
 
-        // Set the adapter
-        if (view instanceof RecyclerView) {
-            Context context = view.getContext();
-            RecyclerView recyclerView = (RecyclerView) view;
-            if (mColumnCount <= 1) {
-                recyclerView.setLayoutManager(new LinearLayoutManager(context));
-            } else {
-                recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
+        // Set up the Parse query to use in the adapter
+        ParseQueryAdapter.QueryFactory<Flashcard> factory = new ParseQueryAdapter.QueryFactory<Flashcard>() {
+            public ParseQuery<Flashcard> create() {
+                ParseQuery<Flashcard> query = ParseQuery.getQuery(Flashcard.class);
+                query.orderByDescending("createdAt");
+                query.fromLocalDatastore();
+                return query;
             }
-            recyclerView.setAdapter(new MyFlashCardRecyclerViewAdapter(Flashcard.ITEMS, mListener));
+        };
+
+
+        // Set the adapter
+        // Parse does not support RecyclerView adapters currently. Should switch code to use Listview
+        if (view instanceof ListView) {
+            Context context = view.getContext();
+            ListView mList = (ListView) view;
+            mList.setAdapter(new FlashcardListAdapter(this.getContext(), factory ));
         }
         return view;
     }
@@ -98,13 +106,13 @@ public class FlashCardFragment extends Fragment {
      * fragment to allow an interaction in this fragment to be communicated
      * to the activity and potentially other fragments contained in that
      * activity.
-     * <p/>
+     * <p>
      * See the Android Training lesson <a href=
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFlashCardListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(FlashcardItem item);
+        void onListFragmentInteraction(Flashcard item);
     }
 }
