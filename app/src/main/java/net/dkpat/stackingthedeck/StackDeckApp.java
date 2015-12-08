@@ -7,6 +7,9 @@ import com.parse.ParseACL;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 
+import net.dkpat.stackingthedeck.Model.Deck;
+import net.dkpat.stackingthedeck.Model.Flashcard;
+
 /**
  * Created by Dillion on 12/7/2015.
  */
@@ -17,8 +20,10 @@ public class StackDeckApp extends Application {
     public void onCreate() {
         super.onCreate();
 
-        // add Todo subclass
-        //ParseObject.registerSubclass(Todo.class);
+        // add Flashcard subclass
+        ParseObject.registerSubclass(Flashcard.class);
+        // add Deck subclass
+        ParseObject.registerSubclass(Deck.class);
 
         // enable the Local Datastore
         Parse.enableLocalDatastore(getApplicationContext());
