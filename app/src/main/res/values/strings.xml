@@ -15,4 +15,6 @@
     <string name="profile_logout_button_label">Log out</string>
     <string name="profile_title_logged_out">You must be logged in to view your profile</string>
     <string name="profile_login_button_label">Log in</string>
+    <string name="title_activity_new_login">NewLoginActivity</string>
+    <string name="title_activity_login_fragment">LoginFragment</string>
 </resources>
