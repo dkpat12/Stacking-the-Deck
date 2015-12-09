@@ -1,8 +1,12 @@
 package net.dkpat.stackingthedeck;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -13,6 +17,8 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import net.dkpat.stackingthedeck.Model.Deck;
@@ -20,7 +26,7 @@ import net.dkpat.stackingthedeck.Model.Flashcard;
 
 public class MainMenuActivity extends AppCompatActivity implements DeckFragment.OnDeckListFragmentInteractionListener,
         FlashcardFragment.OnFlashCardListFragmentInteractionListener {
-
+    private Activity mActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,12 +42,11 @@ public class MainMenuActivity extends AppCompatActivity implements DeckFragment.
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                AddDeckDialogFragment cdd=new AddDeckDialogFragment(view.getContext());
+                cdd.show();
             }
         });
     }
-
 
 
 
