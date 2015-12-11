@@ -3,10 +3,14 @@ package net.dkpat.stackingthedeck;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.view.ActionMode;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.parse.ParseQuery;
@@ -26,6 +30,8 @@ public class DeckFragment extends Fragment {
 
     private OnDeckFragmentListener mListener;
     private DeckListAdapter adapter;
+    private ImageView imageView;
+    private ActionMode mActionMode;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -81,6 +87,15 @@ public class DeckFragment extends Fragment {
             }
         });
 
+
+//        imageView = (ImageView) getView().findViewById(R.id.deck_menu);
+//        imageView.setOnItemClickListenerkListener(new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View v) {
+//                mActionMode = DeckFragment.this.getActivity().startActionMode(new ActionBarCallBack());
+//            }
+//        });
         return view;
     }
 
@@ -116,4 +131,34 @@ public class DeckFragment extends Fragment {
         // TODO: Update argument type and name
         void onDeckSelect(Deck item);
     }
+
+
+    class ActionBarCallBack implements ActionMode.Callback {
+
+        @Override
+        public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+            // TODO Auto-generated method stub
+            return false;
+        }
+
+        @Override
+        public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+            // TODO Auto-generated method stub
+            getActivity().getMenuInflater().inflate(R.menu.menu_deck_context, menu);
+            return true;
+        }
+
+        @Override
+        public void onDestroyActionMode(ActionMode mode) {
+            // TODO Auto-generated method stub
+
+        }
+
+        @Override
+        public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+            // TODO Auto-generated method stub
+            return false;
+        }
+    }
+
 }

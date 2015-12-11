@@ -18,8 +18,7 @@ import net.dkpat.stackingthedeck.Model.Deck;
 import net.dkpat.stackingthedeck.Model.Flashcard;
 
 public class MainMenuActivity extends AppCompatActivity implements DeckFragment.OnDeckFragmentListener,
-        FlashcardFragment.OnFlashCardListFragmentInteractionListener,
-        PopupMenu.OnMenuItemClickListener {
+        FlashcardFragment.OnFlashCardListFragmentInteractionListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,39 +71,39 @@ public class MainMenuActivity extends AppCompatActivity implements DeckFragment.
     }
 
     public void showDeckMenu(View v) {
-        PopupMenu popup = new PopupMenu(this, v);
-        popup.setOnMenuItemClickListener(this);
-        MenuInflater inflater = popup.getMenuInflater();
-        inflater.inflate(R.menu.menu_deck_context, popup.getMenu());
-        popup.show();
+//        PopupMenu popup = new PopupMenu(this, v);
+//        popup.setOnMenuItemClickListener(this);
+//        MenuInflater inflater = popup.getMenuInflater();
+//        inflater.inflate(R.menu.menu_deck_context, popup.getMenu());
+//        popup.show();
     }
 
-    @Override
-    //ClickEvent handler for Deck item Popup Menu
-    public boolean onMenuItemClick(MenuItem item) {
-
-        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-
-        switch (item.getItemId()) {
-            case R.id.action_delete:
-                return true;
-            case R.id.action_edit_deck:
-                /********** MAY NOT WORK ************/
-                Deck deck = adapter.getItem(info.position);
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragmentContainer, FlashcardFragment.newInstance(item));
-                fragmentTransaction.commit();
-
-                return true;
-            case R.id.action_rename:
-                return true;
-            case R.id.action_share:
-                return true;
-            default:
-                return false;
-        }
-    }
+//    @Override
+////    ClickEvent handler for Deck item Popup Menu
+//    public boolean onMenuItemClick(MenuItem item) {
+//
+//        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+//
+//        switch (item.getItemId()) {
+//            case R.id.action_delete:
+//              action_delete  return true;
+//            case R.id.action_edit_deck:
+//                /********** MAY NOT WORK ************/
+//                Deck deck = adapter.getItem(info.position);
+//                FragmentManager fragmentManager = getSupportFragmentManager();
+//                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//                fragmentTransaction.replace(R.id.fragmentContainer, FlashcardFragment.newInstance(item));
+//                fragmentTransaction.commit();
+//
+//                return true;
+//            case R.id.action_rename:
+//                return true;
+//            case R.id.action_share:
+//                return true;
+//            default:
+//                return false;
+//        }
+//    }
 
     @Override
     public void onListFragmentInteraction(Flashcard item) {
