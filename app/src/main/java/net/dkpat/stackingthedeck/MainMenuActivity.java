@@ -86,13 +86,13 @@ public class MainMenuActivity extends AppCompatActivity implements DeckFragment.
 //
 //        switch (item.getItemId()) {
 //            case R.id.action_delete:
-//              action_delete  return true;
+//                return true;
 //            case R.id.action_edit_deck:
 //                /********** MAY NOT WORK ************/
 //                Deck deck = adapter.getItem(info.position);
 //                FragmentManager fragmentManager = getSupportFragmentManager();
 //                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//                fragmentTransaction.replace(R.id.fragmentContainer, FlashcardFragment.newInstance(item));
+//                fragmentTransaction.replace(R.id.fragmentContainer, FlashcardFragment.newInstance(deck));
 //                fragmentTransaction.commit();
 //
 //                return true;
