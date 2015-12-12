@@ -1,109 +1,242 @@
 package net.dkpat.stackingthedeck.ParseLogin;
 
-import android.content.Context;
-import android.net.Uri;
+/*
+ *  Copyright (c) 2014, Parse, LLC. All rights reserved.
+ *
+ *  You are hereby granted a non-exclusive, worldwide, royalty-free license to use,
+ *  copy, modify, and distribute this software in source code or binary form for use
+ *  in connection with the web services and APIs provided by Parse.
+ *
+ *  As with any software that integrates with the Parse platform, your use of
+ *  this software is subject to the Parse Terms of Service
+ *  [https://www.parse.com/about/terms]. This copyright notice shall be
+ *  included in all copies or substantial portions of the software.
+ *
+ *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+ *  FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+ *  COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+ *  IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+ *  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ */
+
+import android.app.Activity;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 
-import net.dkpat.stackingthedeck.R;
+import com.parse.ParseException;
+import com.parse.ParseUser;
+import com.parse.SignUpCallback;
+import com.parse.ui.ParseLoginConfig;
+import com.parse.ui.ParseLoginFragmentBase;
+import com.parse.ui.ParseOnLoadingListener;
+import com.parse.ui.ParseOnLoginSuccessListener;
+
 
 /**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link SignupFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link SignupFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * Fragment for the user signup screen.
  */
-public class SignupFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+public class SignupFragment extends ParseLoginFragmentBase implements View.OnClickListener {
+    public static final String USERNAME = "com.parse.ui.ParseSignupFragment.USERNAME";
+    public static final String PASSWORD = "com.parse.ui.ParseSignupFragment.PASSWORD";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private EditText usernameField;
+    private EditText passwordField;
+    private EditText confirmPasswordField;
+    private EditText emailField;
+    private EditText nameField;
+    private Button createAccountButton;
+    private ParseOnLoginSuccessListener onLoginSuccessListener;
 
-    private OnFragmentInteractionListener mListener;
+    private ParseLoginConfig config;
+    private int minPasswordLength;
 
-    public SignupFragment() {
-        // Required empty public constructor
-    }
+    private static final String LOG_TAG = "ParseSignupFragment";
+    private static final int DEFAULT_MIN_PASSWORD_LENGTH = 6;
+    private static final String USER_OBJECT_NAME_FIELD = "name";
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment SignupFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static SignupFragment newInstance(String param1, String param2) {
-        SignupFragment fragment = new SignupFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+    public static ParseSignupFragment newInstance(Bundle configOptions, String username, String password) {
+        ParseSignupFragment signupFragment = new ParseSignupFragment();
+        Bundle args = new Bundle(configOptions);
+        args.putString(ParseSignupFragment.USERNAME, username);
+        args.putString(ParseSignupFragment.PASSWORD, password);
+        signupFragment.setArguments(args);
+        return signupFragment;
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(LayoutInflater inflater, ViewGroup parent,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_signup, container, false);
-    }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+        Bundle args = getArguments();
+        config = ParseLoginConfig.fromBundle(args, getActivity());
+
+        minPasswordLength = DEFAULT_MIN_PASSWORD_LENGTH;
+        if (config.getParseSignupMinPasswordLength() != null) {
+            minPasswordLength = config.getParseSignupMinPasswordLength();
         }
+
+        String username = args.getString(USERNAME);
+        String password = args.getString(PASSWORD);
+
+        View v = inflater.inflate(com.parse.ui.R.layout.com_parse_ui_parse_signup_fragment,
+                parent, false);
+        ImageView appLogo = (ImageView) v.findViewById(com.parse.ui.R.id.app_logo);
+        usernameField = (EditText) v.findViewById(com.parse.ui.R.id.signup_username_input);
+        passwordField = (EditText) v.findViewById(com.parse.ui.R.id.signup_password_input);
+        confirmPasswordField = (EditText) v
+                .findViewById(com.parse.ui.R.id.signup_confirm_password_input);
+        emailField = (EditText) v.findViewById(com.parse.ui.R.id.signup_email_input);
+        nameField = (EditText) v.findViewById(com.parse.ui.R.id.signup_name_input);
+        if (!config.isParseSignupNameFieldEnabled()) {
+            nameField.setVisibility(View.INVISIBLE);
+        }
+        createAccountButton = (Button) v.findViewById(com.parse.ui.R.id.create_account);
+
+        usernameField.setText(username);
+        passwordField.setText(password);
+
+        if (appLogo != null && config.getAppLogo() != null) {
+            appLogo.setImageResource(config.getAppLogo());
+        }
+
+        if (config.isParseLoginEmailAsUsername()) {
+            usernameField.setHint(com.parse.ui.R.string.com_parse_ui_email_input_hint);
+            usernameField.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
+            if (emailField != null) {
+                emailField.setVisibility(View.GONE);
+            }
+        }
+
+        if (config.getParseSignupSubmitButtonText() != null) {
+            createAccountButton.setText(config.getParseSignupSubmitButtonText());
+        }
+        createAccountButton.setOnClickListener(this);
+
+        return v;
     }
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        if (activity instanceof ParseOnLoginSuccessListener) {
+            onLoginSuccessListener = (ParseOnLoginSuccessListener) activity;
         } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
+            throw new IllegalArgumentException(
+                    "Activity must implemement ParseOnLoginSuccessListener");
+        }
+
+        if (activity instanceof ParseOnLoadingListener) {
+            onLoadingListener = (ParseOnLoadingListener) activity;
+        } else {
+            throw new IllegalArgumentException(
+                    "Activity must implemement ParseOnLoadingListener");
         }
     }
 
     @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
+    public void onClick(View v) {
+        String username = usernameField.getText().toString();
+        String password = passwordField.getText().toString();
+        String passwordAgain = confirmPasswordField.getText().toString();
+
+        String email = null;
+        if (config.isParseLoginEmailAsUsername()) {
+            email = usernameField.getText().toString();
+        } else if (emailField != null) {
+            email = emailField.getText().toString();
+        }
+
+        String name = null;
+        if (nameField != null) {
+            name = nameField.getText().toString();
+        }
+
+        if (username.length() == 0) {
+            if (config.isParseLoginEmailAsUsername()) {
+                showToast(com.parse.ui.R.string.com_parse_ui_no_email_toast);
+            } else {
+                showToast(com.parse.ui.R.string.com_parse_ui_no_username_toast);
+            }
+        } else if (password.length() == 0) {
+            showToast(com.parse.ui.R.string.com_parse_ui_no_password_toast);
+        } else if (password.length() < minPasswordLength) {
+            showToast(getResources().getQuantityString(
+                    com.parse.ui.R.plurals.com_parse_ui_password_too_short_toast,
+                    minPasswordLength, minPasswordLength));
+        } else if (passwordAgain.length() == 0) {
+            showToast(com.parse.ui.R.string.com_parse_ui_reenter_password_toast);
+        } else if (!password.equals(passwordAgain)) {
+            showToast(com.parse.ui.R.string.com_parse_ui_mismatch_confirm_password_toast);
+            confirmPasswordField.selectAll();
+            confirmPasswordField.requestFocus();
+        } else if (email != null && email.length() == 0) {
+            showToast(com.parse.ui.R.string.com_parse_ui_no_email_toast);
+        } else if (name != null && name.length() == 0 && config.isParseSignupNameFieldEnabled()) {
+            showToast(com.parse.ui.R.string.com_parse_ui_no_name_toast);
+        } else {
+            ParseUser user = new ParseUser();
+
+            // Set standard fields
+            user.setUsername(username);
+            user.setPassword(password);
+            user.setEmail(email);
+
+            // Set additional custom fields only if the user filled it out
+            if (name.length() != 0 && config.isParseSignupNameFieldEnabled()) {
+                user.put(USER_OBJECT_NAME_FIELD, name);
+            }
+
+            loadingStart();
+            user.signUpInBackground(new SignUpCallback() {
+
+                @Override
+                public void done(ParseException e) {
+                    if (isActivityDestroyed()) {
+                        return;
+                    }
+
+                    if (e == null) {
+                        loadingFinish();
+                        signupSuccess();
+                    } else {
+                        loadingFinish();
+                        if (e != null) {
+                            debugLog(getString(com.parse.ui.R.string.com_parse_ui_login_warning_parse_signup_failed) +
+                                    e.toString());
+                            switch (e.getCode()) {
+                                case ParseException.INVALID_EMAIL_ADDRESS:
+                                    showToast(com.parse.ui.R.string.com_parse_ui_invalid_email_toast);
+                                    break;
+                                case ParseException.USERNAME_TAKEN:
+                                    showToast(com.parse.ui.R.string.com_parse_ui_username_taken_toast);
+                                    break;
+                                case ParseException.EMAIL_TAKEN:
+                                    showToast(com.parse.ui.R.string.com_parse_ui_email_taken_toast);
+                                    break;
+                                default:
+                                    showToast(com.parse.ui.R.string.com_parse_ui_signup_failed_unknown_toast);
+                            }
+                        }
+                    }
+                }
+            });
+        }
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+    @Override
+    protected String getLogTag() {
+        return LOG_TAG;
+    }
+
+    private void signupSuccess() {
+        onLoginSuccessListener.onLoginSuccess();
     }
 }

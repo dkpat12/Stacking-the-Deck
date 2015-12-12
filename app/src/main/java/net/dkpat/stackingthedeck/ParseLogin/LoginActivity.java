@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.parse.ParseUser;
 import com.parse.ui.ParseLoginBuilder;
+import com.parse.ui.ParseSignupFragment;
 
 import net.dkpat.stackingthedeck.R;
 
@@ -26,76 +27,33 @@ public class LoginActivity extends AppCompatActivity implements LoginFragment.On
 
     private ParseUser currentUser;
 
+    private final int fragmentContainer = android.R.id.content;
+    private Bundle configOptions;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_login);
-        /*titleTextView = (TextView) findViewById(R.id.profile_title);
-        emailTextView = (TextView) findViewById(R.id.profile_email);
-        nameTextView = (TextView) findViewById(R.id.profile_name);
-        loginOrLogoutButton = (Button) findViewById(R.id.login_or_logout_button);
-        titleTextView.setText(R.string.profile_title_logged_in);
 
-        loginOrLogoutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (currentUser != null) {
-                    // User clicked to log out.
-                    ParseUser.logOut();
-                    currentUser = null;
-                    showProfileLoggedOut();
-                } else {
-                    // User clicked to log in.
-                    Fragment newFragment = new LoginFragment();
-                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-
-                    transaction.replace(R.id.login_title_screen, newFragment);
-                    transaction.addToBackStack(null);
-
-                    transaction.commit();
-                }
-            }
-        });
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        currentUser = ParseUser.getCurrentUser();
-        if (currentUser != null) {
-            showProfileLoggedIn();
-        } else {
-            showProfileLoggedOut();
-        }
-    }
-
-
-     // Shows the profile of the given user.
-
-    private void showProfileLoggedIn() {
-        titleTextView.setText(R.string.profile_title_logged_in);
-        emailTextView.setText(currentUser.getEmail());
-        String fullName = currentUser.getString("name");
-        if (fullName != null) {
-            nameTextView.setText(fullName);
-        }
-        loginOrLogoutButton.setText(R.string.profile_logout_button_label);
-    }
-
-
-     // Show a message asking the user to log in, toggle login/logout button text.
-
-    private void showProfileLoggedOut() {
-        titleTextView.setText(R.string.profile_title_logged_out);
-        emailTextView.setText("");
-        nameTextView.setText("");
-        loginOrLogoutButton.setText(R.string.profile_login_button_label);*/
     }
 
     @Override
     public void onFragmentInteraction(Uri uri) {
 
+    }
+
+
+
+    @Override
+    public void onSignUpClicked(String username, String password) {
+        // Show the signup form, but keep the transaction on the back stack
+        // so that if the user clicks the back button, they are brought back
+        // to the login form.
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(fragmentContainer,
+                SignupFragment.newInstance(configOptions, username, password));
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 }
