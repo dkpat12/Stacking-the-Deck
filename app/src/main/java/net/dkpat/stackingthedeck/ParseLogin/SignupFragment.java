@@ -62,11 +62,11 @@ public class SignupFragment extends ParseLoginFragmentBase implements View.OnCli
     private static final int DEFAULT_MIN_PASSWORD_LENGTH = 6;
     private static final String USER_OBJECT_NAME_FIELD = "name";
 
-    public static ParseSignupFragment newInstance(Bundle configOptions, String username, String password) {
-        ParseSignupFragment signupFragment = new ParseSignupFragment();
+    public static SignupFragment newInstance(Bundle configOptions, String username, String password) {
+        SignupFragment signupFragment = new SignupFragment();
         Bundle args = new Bundle(configOptions);
-        args.putString(ParseSignupFragment.USERNAME, username);
-        args.putString(ParseSignupFragment.PASSWORD, password);
+        args.putString(SignupFragment.USERNAME, username);
+        args.putString(SignupFragment.PASSWORD, password);
         signupFragment.setArguments(args);
         return signupFragment;
     }

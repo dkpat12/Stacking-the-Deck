@@ -302,8 +302,8 @@ public class LoginConfig {
      *     The context for resolving resource IDs.
      * @return The ParseLoginConfig instance.
      */
-    public static ParseLoginConfig fromBundle(Bundle bundle, Context context) {
-        ParseLoginConfig config = new ParseLoginConfig();
+    public static LoginConfig fromBundle(Bundle bundle, Context context) {
+        LoginConfig config = new LoginConfig();
         Set<String> keys = bundle.keySet();
 
         if (keys.contains(APP_LOGO)) {
