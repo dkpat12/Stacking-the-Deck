@@ -38,12 +38,12 @@ public class EditDeckActivity extends AppCompatActivity implements DeckFragment.
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AddDeckDialogFragment cdd = new AddDeckDialogFragment();
-                cdd.show(getSupportFragmentManager(), "String");
+                EditDeckActivity cdd = new EditDeckActivity();
+                fab.show();
             }
         });
     }

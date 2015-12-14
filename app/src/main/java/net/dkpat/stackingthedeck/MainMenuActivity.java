@@ -67,6 +67,5 @@ public class MainMenuActivity extends AppCompatActivity implements DeckFragment.
     public void onListFragmentInteraction(Flashcard item) {
         return;
     }
-
-
+    
 }

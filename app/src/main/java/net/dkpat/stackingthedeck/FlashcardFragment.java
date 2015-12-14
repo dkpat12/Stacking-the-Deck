@@ -1,12 +1,14 @@
 package net.dkpat.stackingthedeck;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.parse.FindCallback;
@@ -31,7 +33,7 @@ public class FlashcardFragment extends Fragment {
 
     private LayoutInflater inflater;
     private OnFlashCardListFragmentInteractionListener mListener;
-    private ParseQueryAdapter<Flashcard> flashcardListAdapter;
+    private FlashcardListAdapter adapter;
     private Deck deck;
 
     /**
@@ -58,6 +60,7 @@ public class FlashcardFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_flashcard_list, container, false);
+        ListView mList = (ListView) view.findViewById(R.id.flashcard_list);
 
 
         // Set up the Parse query to use in the adapter
@@ -65,26 +68,34 @@ public class FlashcardFragment extends Fragment {
             public ParseQuery<Flashcard> create() {
                 ParseQuery<Flashcard> query = ParseQuery.getQuery(Flashcard.class);
                 query.whereEqualTo("deck", deck);
-                query.orderByDescending("createdAt");
-                query.fromLocalDatastore();
                 return query;
             }
         };
 
+        Context context = view.getContext();
+        adapter = new FlashcardListAdapter(context, factory);
         // Set the adapter
-        // Parse does not support RecyclerView adapters currently. Should switch code to use Listview
-        if (view instanceof ListView) {
-            Context context = view.getContext();
-            ListView mList = (ListView) view;
-            mList.setAdapter(new FlashcardListAdapter(this.getContext(), factory ));
-        }
+        mList.setAdapter(adapter);
 
-        FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
+        mList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Flashcard flashcard = adapter.getItem(position);
+
+                Intent intent = new Intent(getActivity().getBaseContext(), EditFlashcardActivity.class);
+                intent.putExtra("FlashcardId", flashcard.getObjectId());
+                startActivity(intent);
+            }
+        });
+
+        FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.flashcardfab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AddDeckDialogFragment cdd = new AddDeckDialogFragment();
-                cdd.show(getActivity().getSupportFragmentManager(), "DeckDialogFragment");
+                Intent intent = new Intent(getActivity().getBaseContext(), CreateFlashcardActivity.class);
+                intent.putExtra("DeckId", deck.getObjectId());
+                startActivity(intent);
             }
 
         });
@@ -93,33 +104,7 @@ public class FlashcardFragment extends Fragment {
     }
 
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFlashCardListFragmentInteractionListener) {
-            mListener = (OnFlashCardListFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnListFragmentInteractionListener");
-        }
-    }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnFlashCardListFragmentInteractionListener {
         // TODO: Update argument type and name
         void onListFragmentInteraction(Flashcard item);

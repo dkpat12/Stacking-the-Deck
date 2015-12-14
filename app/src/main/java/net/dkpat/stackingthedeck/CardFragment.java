@@ -32,7 +32,6 @@ public class CardFragment extends Fragment {
     public static CardFragment newInstance(Flashcard flashcard) {
         CardFragment fragment = new CardFragment();
         fragment.mFlashcard = flashcard;
-        return fragment;
     }
 
     @Override

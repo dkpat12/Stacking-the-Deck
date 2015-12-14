@@ -38,7 +38,7 @@ public class Flashcard extends ParseObject {
     }
 
     // Use getString and others to access fields
-    public String getDefintion() {
+    public String getDefinition() {
         return getString("definition");
     }
 
@@ -75,5 +75,6 @@ public class Flashcard extends ParseObject {
     public void setDraft(boolean isDraft) {
         put("isDraft", isDraft);
     }
+
 
 }

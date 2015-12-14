@@ -178,14 +178,17 @@ public class DeckFragment extends Fragment {
                 Log.i("ContextMenu", "Item 1b was chosen");
                 return true;
             case R.id.action_share:
-                Log.i("ContextMenu", "Item 1b was chosen");
-                return true;
+                Log.i("ContextMenu", "Item 1d was chosen");
+                ShareDeckDialogFragment cdd = new ShareDeckDialogFragment();
+                cdd.show(getActivity().getSupportFragmentManager(), "ShareDeckDialogFragment");
             default:
                 Log.i("ContextMenu", "Item 1b was chosen");
                 return false;
         }
 
     }
+
+
 
 
     /**

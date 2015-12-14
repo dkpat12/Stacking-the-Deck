@@ -4,19 +4,20 @@
     android:layout_height="match_parent">
 
     <ListView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/list"
-        android:name="net.dkpat.stackingthedeck.FlashCardFragment"
+        android:id="@+id/flashcard_list"
+        android:name="net.dkpat.stackingthedeck.FlashcardFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        tools:context=".FlashcardFragment"
+        android:layout_marginBottom="@dimen/fab_icon_size"
+        android:scrollbars="vertical"
+        tools:context="net.dkpat.stackingthedeck.FlashcardFragment"
         tools:listitem="@layout/fragment_flashcard_list_item" />
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
+        android:id="@+id/flashcardfab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
