@@ -9,21 +9,36 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.view.ActionMode;
 import android.support.v7.widget.PopupMenu;
 import android.util.Log;
+<<<<<<< HEAD
 import android.view.LayoutInflater;
 import android.view.Menu;
+=======
+import android.view.ContextMenu;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+>>>>>>> master
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseQueryAdapter;
+import com.parse.ParseUser;
 
 import net.dkpat.stackingthedeck.Model.Deck;
+import net.dkpat.stackingthedeck.Model.Flashcard;
 import net.dkpat.stackingthedeck.helpers.DeckListAdapter;
 
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A fragment representing a list of Items.
@@ -37,6 +52,13 @@ public class DeckFragment extends Fragment {
     private DeckListAdapter adapter;
     private ImageView imageView;
     private ActionMode mActionMode;
+<<<<<<< HEAD
+=======
+    private LayoutInflater inflater;
+    private ParseQueryAdapter<Deck> DeckListAdapter;
+    private ArrayList<Deck> arrayOfDecks;
+    private int currentI;
+>>>>>>> master
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -60,30 +82,47 @@ public class DeckFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+<<<<<<< HEAD
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_deck_list, container, false);
         ListView mList = (ListView) view;
+=======
+        Log.d("Task", "OnCreateView");
 
-        // Set up the Parse query to use in the adapter
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_deck_list, container, false);
+        ListView mList = (ListView) view.findViewById(R.id.deck_list);
+        arrayOfDecks = new ArrayList<Deck>();
+>>>>>>> master
+
+
+        //Set up the Parse query to use in the adapter
         ParseQueryAdapter.QueryFactory<Deck> factory = new ParseQueryAdapter.QueryFactory<Deck>() {
             public ParseQuery<Deck> create() {
                 ParseQuery<Deck> query = ParseQuery.getQuery(Deck.class);
+                query.whereEqualTo("owner", ParseUser.getCurrentUser());
                 query.orderByDescending("name");
-                query.fromLocalDatastore();
                 return query;
             }
         };
 
         Context context = view.getContext();
         adapter = new DeckListAdapter(context, factory);
+<<<<<<< HEAD
 
         // Set the adapter
         mList.setAdapter(adapter);
+=======
+        // Set the adapter
+        mList.setAdapter(adapter);
+        registerForContextMenu(mList);
+>>>>>>> master
 
         //Set Click listener
         mList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+<<<<<<< HEAD
 
                 //Get the clicked deck object
                 Deck deck = adapter.getItem(position);
@@ -137,6 +176,21 @@ public class DeckFragment extends Fragment {
                 }
             });
         }
+=======
+                //Get the clicked deck object
+                Log.d("Task", "OnItemClick");
+                Deck deck = adapter.getItem(position);
+                //Pass the deck object
+                //mListener.onDeckSelect(deck);
+
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragmentContainer, FlashcardFragment.newInstance(deck));
+                fragmentTransaction.commit();
+            }
+        });
+
+>>>>>>> master
         return view;
     }
 
@@ -157,6 +211,46 @@ public class DeckFragment extends Fragment {
         super.onDetach();
         mListener = null;
     }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        getActivity().getMenuInflater().inflate(R.menu.menu_deck_context, menu);
+    }
+
+    /**
+     * This will be invoked when a menu item is selected
+     */
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        int position = info.position;
+
+        switch (item.getItemId()) {
+            case R.id.action_delete:
+                Log.i("ContextMenu", "Item 1a was chosen");
+                return true;
+            case R.id.action_edit_deck:
+                Log.i("ContextMenu", "Item 1b was chosen");
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragmentContainer, FlashcardFragment.newInstance(adapter.getItem(position)));
+                fragmentTransaction.commit();
+                return true;
+            case R.id.action_rename:
+                Log.i("ContextMenu", "Item 1b was chosen");
+                return true;
+            case R.id.action_share:
+                Log.i("ContextMenu", "Item 1b was chosen");
+                return true;
+            default:
+                Log.i("ContextMenu", "Item 1b was chosen");
+                return false;
+        }
+
+    }
+
 
     /**
      * This interface must be implemented by activities that contain this

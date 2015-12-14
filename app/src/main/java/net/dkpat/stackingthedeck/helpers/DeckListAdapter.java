@@ -47,7 +47,11 @@ public class DeckListAdapter extends ParseQueryAdapter<Deck> {
         }
 
         TextView DeckName = holder.mDeckName;
+<<<<<<< HEAD
         DeckName.setText(deck.getName());
+=======
+        DeckName.setText(mDeck.getName());
+>>>>>>> master
 
         return view;
     }

@@ -14,7 +14,7 @@ import net.dkpat.stackingthedeck.Model.Flashcard;
  * Created by Dillion on 12/7/2015.
  */
 public class StackDeckApp extends Application {
-    //public static final String TODO_GROUP_NAME = "ALL_TODOS";
+    public static final String DECK_GROUP_NAME = "ALL_DECK_NAMES";
 
     @Override
     public void onCreate() {

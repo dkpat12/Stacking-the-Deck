@@ -31,7 +31,7 @@
         android:src="@drawable/ic_dots_vertical_grey600_24dp"
         android:contentDescription="Deck Context Menu"
         android:background="?android:attr/selectableItemBackground"
-        android:onClick="showDeckMenu"/>
+        />
 
     <!-- Consider http://developer.android.com/training/material/animations.html#ViewState -->
 </LinearLayout>

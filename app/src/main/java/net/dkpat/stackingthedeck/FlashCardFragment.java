@@ -28,6 +28,10 @@ import java.util.List;
  */
 public class FlashcardFragment extends Fragment {
 
+<<<<<<< HEAD:app/src/main/java/net/dkpat/stackingthedeck/FlashCardFragment.java
+=======
+    private LayoutInflater inflater;
+>>>>>>> master:app/src/main/java/net/dkpat/stackingthedeck/FlashcardFragment.java
     private OnFlashCardListFragmentInteractionListener mListener;
     private ParseQueryAdapter<Flashcard> flashcardListAdapter;
     private Deck deck;
