@@ -137,14 +137,6 @@ public class DeckFragment extends Fragment {
                 }
             });
         }
-//        imageView = (ImageView) getView().findViewById(R.id.deck_menu);
-//        imageView.setOnItemClickListenerkListener(new View.OnClickListener() {
-//
-//            @Override
-//            public void onClick(View v) {
-//                mActionMode = DeckFragment.this.getActivity().startActionMode(new ActionBarCallBack());
-//            }
-//        });
         return view;
     }
 
@@ -180,35 +172,5 @@ public class DeckFragment extends Fragment {
         // TODO: Update argument type and name
         void onDeckSelect(Deck item);
     }
-
-
-    class ActionBarCallBack implements ActionMode.Callback {
-
-        @Override
-        public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
-            // TODO Auto-generated method stub
-            return false;
-        }
-
-        @Override
-        public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-            // TODO Auto-generated method stub
-            getActivity().getMenuInflater().inflate(R.menu.menu_deck_context, menu);
-            return true;
-        }
-
-        @Override
-        public void onDestroyActionMode(ActionMode mode) {
-            // TODO Auto-generated method stub
-
-        }
-
-        @Override
-        public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
-            // TODO Auto-generated method stub
-            return false;
-        }
-    }
-
 }
 
