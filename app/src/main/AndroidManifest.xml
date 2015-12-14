@@ -47,7 +47,6 @@
             android:name="com.parse.CLIENT_KEY"
             android:value="@string/parse_client_key" />
 
-
         <activity android:name=".EditDeckActivity" />
         <activity android:name=".QuizActivity"></activity>
 

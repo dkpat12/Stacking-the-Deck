@@ -24,6 +24,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
+import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -121,8 +122,8 @@ public class DeckFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                    AddDeckDialogFragment cdd = new AddDeckDialogFragment();
-                    cdd.show(getActivity().getSupportFragmentManager(), "DeckDialogFragment");
+                AddDeckDialogFragment cdd = new AddDeckDialogFragment();
+                cdd.show(getActivity().getSupportFragmentManager(), "DeckDialogFragment");
             }
 
         });
@@ -157,15 +158,24 @@ public class DeckFragment extends Fragment {
     /**
      * This will be invoked when a menu item is selected
      */
+
+    public void refresh (){
+        adapter.notifyDataSetChanged();
+    }
+
     @Override
     public boolean onContextItemSelected(MenuItem item) {
 
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         int position = info.position;
 
+
         switch (item.getItemId()) {
             case R.id.action_delete:
                 Log.i("ContextMenu", "Item 1a was chosen");
+                Deck deck = adapter.getItem(position);
+                deck.deleteInBackground();
+                refresh();
                 return true;
             case R.id.action_edit_deck:
                 Log.i("ContextMenu", "Item 1b was chosen");
@@ -175,17 +185,17 @@ public class DeckFragment extends Fragment {
                 fragmentTransaction.commit();
                 return true;
             case R.id.action_rename:
-                Log.i("ContextMenu", "Item 1b was chosen");
+                Log.i("ContextMenu", "Item 1c was chosen");
                 return true;
             case R.id.action_share:
                 Log.i("ContextMenu", "Item 1d was chosen");
+
                 ShareDeckDialogFragment cdd = new ShareDeckDialogFragment();
                 cdd.show(getActivity().getSupportFragmentManager(), "ShareDeckDialogFragment");
             default:
-                Log.i("ContextMenu", "Item 1b was chosen");
+                Log.i("ContextMenu", "Item 1e was chosen");
                 return false;
         }
-
     }
 
 

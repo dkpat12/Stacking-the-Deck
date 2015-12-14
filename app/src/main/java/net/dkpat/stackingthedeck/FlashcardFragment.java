@@ -84,7 +84,7 @@ public class FlashcardFragment extends Fragment {
                 Flashcard flashcard = adapter.getItem(position);
 
                 Intent intent = new Intent(getActivity().getBaseContext(), EditFlashcardActivity.class);
-                intent.putExtra("FlashcardId", flashcard.getObjectId());
+                intent.putExtra("flashcardId", flashcard.getObjectId());
                 startActivity(intent);
             }
         });
