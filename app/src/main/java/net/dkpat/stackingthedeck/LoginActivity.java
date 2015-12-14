@@ -56,7 +56,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onStart();
         currentUser = ParseUser.getCurrentUser();
         if (currentUser != null) {
-            showProfileLoggedIn();
+            Intent intent = new Intent(getBaseContext(), MainMenuActivity.class);
+            startActivity(intent);
 
         } else {
             showProfileLoggedOut();
@@ -64,19 +65,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-    // Shows the profile of the given user. - currently crashes app when selecting log in
 
-    private void showProfileLoggedIn() {
-        Intent intent = new Intent(getBaseContext(), MainMenuActivity.class);
-        startActivity(intent);
-        titleTextView.setText(R.string.profile_title_logged_in);
-        emailTextView.setText(currentUser.getEmail());
-        String fullName = currentUser.getString("name");
-        if (fullName != null) {
-            nameTextView.setText(fullName);
-        }
-        loginOrLogoutButton.setText(R.string.profile_logout_button_label);
-    }
 
 
     // Show a message asking the user to log in, toggle login/logout button text.

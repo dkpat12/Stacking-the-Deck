@@ -95,7 +95,6 @@ public class DeckFragment extends Fragment {
                 //Get the clicked deck object
                 Log.d("Task", "OnItemClick");
                 Deck deck = adapter.getItem(position);
-
                 Intent intent = new Intent(getActivity().getBaseContext(), QuizActivity.class);
                 //Pass Deck id
                 intent.putExtra("deck_id", deck.getObjectId());
