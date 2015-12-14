@@ -175,7 +175,10 @@ public class DeckFragment extends Fragment {
                 Log.i("ContextMenu", "Item 1a was chosen");
                 Deck deck = adapter.getItem(position);
                 deck.deleteInBackground();
-                refresh();
+                FragmentManager fManager = getFragmentManager();
+                FragmentTransaction fTransaction = fManager.beginTransaction();
+                fTransaction.replace(R.id.fragmentContainer, DeckFragment.newInstance(), "DeckFragment");
+                fTransaction.commit();
                 return true;
             case R.id.action_edit_deck:
                 Log.i("ContextMenu", "Item 1b was chosen");

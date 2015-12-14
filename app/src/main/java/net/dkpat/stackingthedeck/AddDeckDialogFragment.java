@@ -6,6 +6,8 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.widget.EditText;
 
 import com.parse.ParseUser;
@@ -58,8 +60,15 @@ public class AddDeckDialogFragment extends android.support.v4.app.DialogFragment
                         deck.setName(deckName.getText().toString());
                         deck.setOwner(ParseUser.getCurrentUser());
                         deck.setDraft(true);
-                        //Save to Parse
-                        deck.saveEventually();
+                        //Save to Parse immediately - deck.saveEventually saves the data on the device first then pushes to Parse
+                        deck.saveInBackground();
+
+                        //Rebuilds the fragment with new Decks
+                        FragmentManager fManager = getFragmentManager();
+                        FragmentTransaction fTransaction = fManager.beginTransaction();
+                        fTransaction.replace(R.id.fragmentContainer, DeckFragment.newInstance(), "DeckFragment");
+                        fTransaction.commit();
+
 //                                (StackDeckApp.DECK_GROUP_NAME);
 
 //                                new SaveCallback() {
