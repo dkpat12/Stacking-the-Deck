@@ -49,39 +49,6 @@ public class DeckListAdapter extends ParseQueryAdapter<Deck> {
         TextView DeckName = holder.mDeckName;
         DeckName.setText(deck.getName());
 
-//        holder.mDeckMenu.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                final PopupMenu popmenu = new PopupMenu(mContext, holder.mDeckMenu);
-//                popmenu.getMenuInflater().inflate(R.menu.menu_deck_context, popmenu.getMenu());
-//
-//                popmenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-//                    @Override
-//                    public boolean onMenuItemClick(MenuItem item) {
-//                        switch (item.getItemId()) {
-//                            case R.id.action_delete:
-//                                return true;
-//                            case R.id.action_edit_deck:
-//                                /********** MAY NOT WORK ************/
-//                                OnDeckMenuSelect();
-//
-//                                return true;
-//                            case R.id.action_rename:
-//                                return true;
-//                            case R.id.action_share:
-//                                return true;
-//                            default:
-//                                return false;
-//                        }
-//                    }
-//                });
-//            }
-//        });
-//        if (flashcard.isDraft()) {
-//            todoTitle.setTypeface(null, Typeface.ITALIC);
-//        } else {
-//            todoTitle.setTypeface(null, Typeface.NORMAL);
-//        }
         return view;
     }
 
