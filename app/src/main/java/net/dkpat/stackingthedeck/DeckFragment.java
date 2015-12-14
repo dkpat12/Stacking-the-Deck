@@ -49,74 +49,64 @@ public class DeckFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
     }
+    
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_deck_list, container, false);
 
 
-//        public interface OnDeckListFragmentInteractionListener {
-//            // TODO: Update argument type and name
-//            void onListFragmentInteraction(Deck item);
-//        }
-
-
-
-
-        @Override
-        public View onCreateView (LayoutInflater inflater, ViewGroup container,
-                Bundle savedInstanceState){
-            View view = inflater.inflate(R.layout.fragment_deck_list, container, false);
-
-
-
-            //Set up the Parse query to use in the adapter
-            ParseQueryAdapter.QueryFactory<Deck> factory = new ParseQueryAdapter.QueryFactory<Deck>() {
-                public  ParseQuery<Deck> create() {
-                    ParseQuery<Deck> query = ParseQuery.getQuery(Deck.class);
-                    query.orderByDescending("createdBy");
-                    query.fromLocalDatastore();
-                    return query;
-                }
-            };
-
-
-            // Set the adapter
-            // Parse does not support RecyclerView adapters currently. Should switch code to use Listview
-            if (view instanceof ListView) {
-                Context context = view.getContext();
-                ListView mList = (ListView) view;
-                mList.setAdapter(new DeckListAdapter(this.getContext(), factory));
+        //Set up the Parse query to use in the adapter
+        ParseQueryAdapter.QueryFactory<Deck> factory = new ParseQueryAdapter.QueryFactory<Deck>() {
+            public ParseQuery<Deck> create() {
+                ParseQuery<Deck> query = ParseQuery.getQuery(Deck.class);
+                query.orderByDescending("createdBy");
+                query.fromLocalDatastore();
+                return query;
             }
-            return view;
-        }
+        };
 
 
-        @Override
-        public void onAttach (Context context){
-            super.onAttach(context);
-            if (context instanceof OnDeckListFragmentInteractionListener) {
-                mListener = (OnDeckListFragmentInteractionListener) context;
-            } else {
-                throw new RuntimeException(context.toString()
-                        + " must implement OnListFragmentInteractionListener");
-            }
+        // Set the adapter
+        // Parse does not support RecyclerView adapters currently. Should switch code to use Listview
+        if (view instanceof ListView) {
+            Context context = view.getContext();
+            ListView mList = (ListView) view;
+            mList.setAdapter(new DeckListAdapter(this.getContext(), factory));
         }
+        return view;
+    }
 
-        @Override
-        public void onDetach () {
-            super.onDetach();
-            mListener = null;
-        }
 
-        /**
-         * This interface must be implemented by activities that contain this
-         * fragment to allow an interaction in this fragment to be communicated
-         * to the activity and potentially other fragments contained in that
-         * activity.
-         * <p/>
-         * See the Android Training lesson <a href=
-         * "http://developer.android.com/training/basics/fragments/communicating.html"
-         * >Communicating with Other Fragments</a> for more information.
-         */
-        public interface OnDeckListFragmentInteractionListener {
-            // TODO: Update argument type and name
-            void onListFragmentInteraction(Deck item);
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnDeckListFragmentInteractionListener) {
+            mListener = (OnDeckListFragmentInteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnListFragmentInteractionListener");
         }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
+    }
+
+    /**
+     * This interface must be implemented by activities that contain this
+     * fragment to allow an interaction in this fragment to be communicated
+     * to the activity and potentially other fragments contained in that
+     * activity.
+     * <p/>
+     * See the Android Training lesson <a href=
+     * "http://developer.android.com/training/basics/fragments/communicating.html"
+     * >Communicating with Other Fragments</a> for more information.
+     */
+    public interface OnDeckListFragmentInteractionListener {
+        // TODO: Update argument type and name
+        void onListFragmentInteraction(Deck item);
+    }
 }

@@ -44,65 +44,11 @@ public class MainMenuActivity extends AppCompatActivity implements DeckFragment.
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
-                AddDeckDialogFragment cdd=new AddDeckDialogFragment();
+                AddDeckDialogFragment cdd = new AddDeckDialogFragment();
                 cdd.show(getSupportFragmentManager(), "String");
-
-
-//                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-//                        // Add the buttons
-//                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-//                    public void onClick(DialogInterface dialog, int id) {
-//                        // User clicked OK button
-//                    }
-//                });
-//                builder.setNegativeButton("Back", new DialogInterface.OnClickListener() {
-//                    public void onClick(DialogInterface dialog, int id) {
-//                        // User cancelled the dialog
-//                    }
-//                });
-//// Set other dialog properties
-////                ...
-//
-//// Create the AlertDialog
-//                AlertDialog dialog = builder.create();
-
-
-
-
-
-
-//                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(view.getContext());
-//                alertDialogBuilder.setMessage("Are you sure,You wanted to make decision");
-//
-//                alertDialogBuilder.setPositiveButton("yes", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface arg0, int arg1) {
-//                        Toast.makeText(MainMenuActivity.this,"You clicked yes button",Toast.LENGTH_LONG).show();
-//                    }
-//                });
-//
-//                alertDialogBuilder.setNegativeButton("No",new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        finish();
-//                    }
-//                });
-//
-//                AlertDialog alertDialog = alertDialogBuilder.create();
-//                alertDialog.show();
-
-
-
-
-
             }
         });
     }
-
-
-
 
 
     @Override
@@ -130,7 +76,7 @@ public class MainMenuActivity extends AppCompatActivity implements DeckFragment.
 
     @Override
     public void onListFragmentInteraction(Deck item) {
-        return ;
+        return;
     }
 
 
@@ -144,6 +90,6 @@ public class MainMenuActivity extends AppCompatActivity implements DeckFragment.
 
     @Override
     public void onListFragmentInteraction(Flashcard item) {
-        return ;
+        return;
     }
 }

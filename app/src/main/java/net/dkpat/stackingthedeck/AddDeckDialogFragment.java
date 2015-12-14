@@ -46,9 +46,6 @@ import java.util.Stack;
  */
 public class AddDeckDialogFragment extends android.support.v4.app.DialogFragment {
 
-//        implements
-//        android.view.View.OnClickListener {
-
     /**
      * Create a new instance of MyDialogFragment, providing "num"
      * as an argument.
@@ -65,32 +62,9 @@ public class AddDeckDialogFragment extends android.support.v4.app.DialogFragment
     }
 
 
-
-
-
-//    public AddDeckDialogFragment(Context context) {
-//        super(context);
-////        mEditText = EditText;
-//    }
-//
-//    ;
-//
-//    public static int newInstance(String blah) {
-//        return 0;
-//    }
-//
-//
-//    // Use this instance of the interface to deliver action events
-//    AddDeckDialogFragment mListener;
-////    final EditText mEditText;
-
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
-
     }
 
     @Override
@@ -112,6 +86,7 @@ public class AddDeckDialogFragment extends android.support.v4.app.DialogFragment
                         deck.setName(deckName.getText().toString());
                         deck.setOwner(ParseUser.getCurrentUser());
                         deck.setDraft(true);
+                        //Save to Parse
                         deck.saveEventually();
 //                                (StackDeckApp.DECK_GROUP_NAME);
 
@@ -130,8 +105,6 @@ public class AddDeckDialogFragment extends android.support.v4.app.DialogFragment
 //                                    }
 //                                })
 
-
-
                     }
                 })
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -139,173 +112,14 @@ public class AddDeckDialogFragment extends android.support.v4.app.DialogFragment
                         // User cancelled the dialog
                     }
                 });
+
         // Create the AlertDialog object and return it
         return builder.create();
     }
 }
 
-//        // 1. Instantiate an AlertDialog.Builder with its constructor
-//        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-//        // Get the layout inflater
-//        LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(
-//                Context.LAYOUT_INFLATER_SERVICE);
-//
-//        builder.setView(inflater.inflate(R.layout.add_deck_dialog, null));
-//        // 2. Chain together various setter methods to set the dialog characteristics
-//        builder.setMessage("Create")
-//                .setTitle("Create a New Deck");
-//
-////        int btn_yes = BUTTON_POSITIVE;
-////        int btn_no = BUTTON_NEGATIVE;
-//
-//        builder.setPositiveButton("Create", new DialogInterface.OnClickListener() {
-//            public void onClick(DialogInterface dialog, int id) {
-////                 User clicked OK button
-////                mEditText.getText().toString()
-//
-//                Button btnYes = (Button)findViewById(R.id.btn_yes);
-//
-//
-//                View view ;
-//
-//
-////                Intent intent = new Intent(Intent.ACTION_MAIN);
-////                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-////                intent.addCategory(Intent.CATEGORY_HOME);
-////                AddDeckDialogFragment.this.onDialogPositiveClick(intent);
-//
-//
-////                android.support.v4.app.FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-////                android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-////                fragmentTransaction.replace(R.id.fragmentContainer, EditDeckActivity.newInstance(adapter.getItem(currentI)));
-////                fragmentTransaction.commit();
-//
-//
-////                Intent intent =  new Intent(AddDeckDialogFragment.this, EditDeckActivity.class);
-////                startActivity(intent);
-//
-//            }
-//        });
-//        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-//            public void onClick(DialogInterface dialog, int id) {
-//                // User cancelled the dialog
-//
-//                Button btnNo = (Button)findViewById(R.id.btn_no);
-//
-//                dialog.dismiss();
-//            }
-//        });
-//        // 3. Get the AlertDialog from create()
-//        // (Create the Alert Dialog)
-//        AlertDialog dialog = builder.create();
-//    }
-//
-//
-//    private void onDialogPositiveClick(Intent addDeckDialogFragment) {
-//    }
-//    private void onDialogNegativeClick(AddDeckDialogFragment addDeckDialogFragment) {
-//    }
-//
-//    @Override
-//    public void onClick(View v) {
-//        final AddDeckDialogFragment newFragment;
-//    }
-
-
-//    @Override
-//    protected View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-//        View view = inflater.inflate(R.layout.add_deck_dialog, container, false);
-//        ImageView imageView = (ImageView) view.findViewById(R.id.btn_yes);
-//        return view;
-//    }
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-////    private CreateDeck mCreateText;
-////
-////    public AddDeckDialogFragment(Context context) {
-////        super(context);
-////    }
-////
-////    public static AddDeckDialogFragment newInstance(String title) {
-////        AddDeckDialogFragment frag = new AddDeckDialogFragment();
-////        Bundle args = new Bundle();
-////        args.putString("Create a new Deck", title);
-////        frag.setArguements(args);
-////        return frag;
-////    }
-//
-//    public Activity c;
-//    public Dialog d;
-//    public Button yes, no;
-//
-//    public AddDeckDialogFragment(Context context) {
-//        super(context);
-//    }
-//
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        requestWindowFeature(Window.FEATURE_NO_TITLE);
-//        setContentView(R.layout.add_deck_dialog);
-//        yes = (Button) findViewById(R.id.btn_yes);
-//        no = (Button) findViewById(R.id.btn_no);
-//        yes.setOnClickListener(this);
-//        no.setOnClickListener(this);
-//
-//    }
-//
-//
-//    @Override
-//    public void onClick(View v) {
-//        switch (v.getId()) {
-//            case R.id.btn_yes:
-//
-//                c.finish();
-//                break;
-//            case R.id.btn_no:
-//                dismiss();
-//                break;
-//            default:
-//                break;
-//        }
-//        dismiss();
-//    }
-//
-//
-////    @Override
-////    public void onCreateBtnSelect(Deck item) {
-////        FragmentManager fragmentManager = getSupportFragmentManager();
-////        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-////        fragmentTransaction.replace(R.id.fragmentContainer, DeckFragment.instantiate(this.getContext(), DeckListAdapter));
-////        fragmentTransaction.commit();
-////    }
-//
-//}
-////FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-////fab.setOnClickListener(new View.OnClickListener() {
-////@Override
-////public void onClick(View view) {
-////        AddDeckDialogFragment cdd=new AddDeckDialogFragment(view.getContext());
-////        cdd.show();
