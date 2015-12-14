@@ -1,6 +1,7 @@
 package net.dkpat.stackingthedeck;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -83,8 +84,9 @@ public class FlashcardFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AddDeckDialogFragment cdd = new AddDeckDialogFragment();
-                cdd.show(getActivity().getSupportFragmentManager(), "DeckDialogFragment");
+                Intent intent = new Intent(getActivity().getBaseContext(), EditFlashcardActivity.class);
+                intent.putExtra("DeckId", deck.getObjectId());
+                startActivity(intent);
             }
 
         });
@@ -93,33 +95,7 @@ public class FlashcardFragment extends Fragment {
     }
 
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFlashCardListFragmentInteractionListener) {
-            mListener = (OnFlashCardListFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnListFragmentInteractionListener");
-        }
-    }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnFlashCardListFragmentInteractionListener {
         // TODO: Update argument type and name
         void onListFragmentInteraction(Flashcard item);
