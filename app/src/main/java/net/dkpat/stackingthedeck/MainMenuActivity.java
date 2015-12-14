@@ -64,10 +64,7 @@ public class MainMenuActivity extends AppCompatActivity implements DeckFragment.
 
     @Override
     public void onDeckSelect(Deck item) {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fragmentContainer, FlashcardFragment.newInstance(item));
-        fragmentTransaction.commit();
+
     }
 
     @Override
