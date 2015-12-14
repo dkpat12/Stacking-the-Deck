@@ -14,6 +14,8 @@ import android.util.Log;
 import android.view.Window;
 
 import com.parse.Parse;
+import com.parse.ParseUser;
+import net.dkpat.stackingthedeck.*;
 
 
 /**
@@ -60,6 +62,7 @@ public class ParseLoginActivity extends FragmentActivity implements
 
     private ProgressDialog progressDialog;
     private Bundle configOptions;
+    private ParseUser currentUser;
 
     // Although Activity.isDestroyed() is in API 17, we implement it anyways for older versions.
     private boolean destroyed = false;
@@ -203,5 +206,17 @@ public class ParseLoginActivity extends FragmentActivity implements
 
         return mergedOptions;
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        currentUser = ParseUser.getCurrentUser();
+        if (currentUser != null){
+            Intent intent = new Intent(getBaseContext(), MainMenuActivity.class);
+            startActivity(intent);
+        }
+    }
+
 }
 

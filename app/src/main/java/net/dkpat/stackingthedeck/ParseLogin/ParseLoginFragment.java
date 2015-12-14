@@ -6,6 +6,7 @@ package net.dkpat.stackingthedeck.ParseLogin;
 
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
@@ -20,6 +21,8 @@ import android.widget.TextView;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
+
+import net.dkpat.stackingthedeck.MainMenuActivity;
 import net.dkpat.stackingthedeck.R;
 
 /**
@@ -205,7 +208,6 @@ public class ParseLoginFragment extends ParseLoginFragmentBase {
     }
 
 
-
     private boolean allowParseLoginAndSignup() {
         if (!config.isParseLoginEnabled()) {
             return false;
@@ -236,9 +238,16 @@ public class ParseLoginFragment extends ParseLoginFragmentBase {
         }
         return result;
     }
+
     private void loginSuccess() {
         onLoginSuccessListener.onLoginSuccess();
-    }
 
+        Intent intent = new Intent(getActivity().getBaseContext(), MainMenuActivity.class);
+        startActivity(intent);
+    }
 }
+
+
+
+
 

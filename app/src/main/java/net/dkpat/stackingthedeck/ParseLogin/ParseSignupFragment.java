@@ -4,6 +4,7 @@ package net.dkpat.stackingthedeck.ParseLogin;
  * Created by drclap01 on 12/13/15.
  */
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.LayoutInflater;
@@ -18,6 +19,8 @@ import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 import com.parse.ui.ParseLoginConfig;
+
+import net.dkpat.stackingthedeck.MainMenuActivity;
 import net.dkpat.stackingthedeck.ParseLogin.ParseOnLoadingListener;
 import net.dkpat.stackingthedeck.ParseLogin.ParseOnLoginSuccessListener;
 import net.dkpat.stackingthedeck.R;
@@ -220,5 +223,8 @@ public class ParseSignupFragment extends net.dkpat.stackingthedeck.ParseLogin.Pa
 
     private void signupSuccess() {
         onLoginSuccessListener.onLoginSuccess();
+
+        Intent intent = new Intent(getActivity().getBaseContext(), MainMenuActivity.class);
+        startActivity(intent);
     }
 }

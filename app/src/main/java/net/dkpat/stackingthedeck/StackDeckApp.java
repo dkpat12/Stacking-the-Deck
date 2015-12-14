@@ -28,7 +28,6 @@ public class StackDeckApp extends Application {
         // enable the Local Datastore
         Parse.enableLocalDatastore(getApplicationContext());
         Parse.initialize(this, getString(R.string.parse_app_id), getString(R.string.parse_client_key));
-        ParseUser.enableAutomaticUser();
         ParseACL defaultACL = new ParseACL();
         ParseACL.setDefaultACL(defaultACL, true);
     }
