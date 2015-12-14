@@ -1,44 +1,70 @@
 package net.dkpat.stackingthedeck;
 
+
+import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.Toolbar;
-import android.view.MenuInflater;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.AdapterView;
+import android.view.View;
 
 import net.dkpat.stackingthedeck.Model.Deck;
 import net.dkpat.stackingthedeck.Model.Flashcard;
 
+
 public class MainMenuActivity extends AppCompatActivity implements DeckFragment.OnDeckFragmentListener,
-        FlashcardFragment.OnFlashCardListFragmentInteractionListener{
+        FlashcardFragment.OnFlashCardListFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //Animation transition
         //getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
-
         setContentView(R.layout.activity_main_menu);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Fragment currentFragment = getFragmentManager().findFragmentById(R.id.fragmentContainer);
+//                Fragment deckFragment = getFragmentManager().findFragmentByTag("DeckFragment");
+//                Fragment flashcardFragment = getFragmentManager().findFragmentByTag("FlashcardFragment");
+//
+//                if (deckFragment != null && deckFragment.isVisible()) {
+//                    AddDeckDialogFragment cdd = new AddDeckDialogFragment();
+//                    cdd.show(getSupportFragmentManager(), "DeckDialogFragment");
+//                }
+//                if (flashcardFragment != null && flashcardFragment.isVisible()) {
+//                    Intent intent = new Intent(getBaseContext(), EditFlashcardActivity.class);
+//                    startActivity(intent);
+//                }
+////                if (myFragment != null && myFragment.isVisible()) {
+////                    if (currentFragment instanceof (Fragment) DeckFragment){
+////                        AddDeckDialogFragment cdd = new AddDeckDialogFragment();
+////                        cdd.show(getSupportFragmentManager(), "String");
+////                    }
+////                    if (currentFragment instanceof CardFragment) {
+////                        EditFlashcardActivity cdd = new EditFlashcardActivity();
+////                        Intent intent = new Intent(getBaseContext(), EditFlashcardActivity.class);
+////                    startActivity(intent);
+////                }
+//            }
+//
+//        });
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragmentContainer, new DeckFragment(), "DeckFragment");
+        fragmentTransaction.commit();
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -64,50 +90,12 @@ public class MainMenuActivity extends AppCompatActivity implements DeckFragment.
 
     @Override
     public void onDeckSelect(Deck item) {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fragmentContainer, FlashcardFragment.newInstance(item));
-        fragmentTransaction.commit();
-    }
 
-    public void showDeckMenu(View v) {
-//        PopupMenu popup = new PopupMenu(this, v);
-//        popup.setOnMenuItemClickListener(this);
-//        MenuInflater inflater = popup.getMenuInflater();
-//        inflater.inflate(R.menu.menu_deck_context, popup.getMenu());
-//        popup.show();
     }
-
-//    @Override
-////    ClickEvent handler for Deck item Popup Menu
-//    public boolean onMenuItemClick(MenuItem item) {
-//
-//        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-//
-//        switch (item.getItemId()) {
-//            case R.id.action_delete:
-//                return true;
-//            case R.id.action_edit_deck:
-//                /********** MAY NOT WORK ************/
-//                Deck deck = adapter.getItem(info.position);
-//                FragmentManager fragmentManager = getSupportFragmentManager();
-//                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//                fragmentTransaction.replace(R.id.fragmentContainer, FlashcardFragment.newInstance(deck));
-//                fragmentTransaction.commit();
-//
-//                return true;
-//            case R.id.action_rename:
-//                return true;
-//            case R.id.action_share:
-//                return true;
-//            default:
-//                return false;
-//        }
-//    }
 
     @Override
     public void onListFragmentInteraction(Flashcard item) {
-        return ;
+        return;
     }
 
 
