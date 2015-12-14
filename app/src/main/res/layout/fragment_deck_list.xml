@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <ListView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/list"
+    android:id="@+id/deck_list"
     android:scrollbars="vertical"
     android:name="net.dkpat.stackingthedeck.DeckFragment"
     android:layout_width="match_parent"
@@ -10,4 +11,5 @@
     android:layout_marginRight="16dp"
     tools:context="net.dkpat.stackingthedeck.DeckFragment"
     tools:listitem="@layout/fragment_deck_list_item"
-    android:drawSelectorOnTop="true" />
+    />
+

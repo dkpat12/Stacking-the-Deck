@@ -14,7 +14,7 @@ import net.dkpat.stackingthedeck.Model.Flashcard;
  * Created by Dillion on 12/7/2015.
  */
 public class StackDeckApp extends Application {
-    //public static final String TODO_GROUP_NAME = "ALL_TODOS";
+    public static final String DECK_GROUP_NAME = "ALL_DECK_NAMES";
 
     @Override
     public void onCreate() {
@@ -28,7 +28,6 @@ public class StackDeckApp extends Application {
         // enable the Local Datastore
         Parse.enableLocalDatastore(getApplicationContext());
         Parse.initialize(this, getString(R.string.parse_app_id), getString(R.string.parse_client_key));
-        ParseUser.enableAutomaticUser();
         ParseACL defaultACL = new ParseACL();
         ParseACL.setDefaultACL(defaultACL, true);
     }
