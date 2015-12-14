@@ -1,5 +1,6 @@
 package net.dkpat.stackingthedeck;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -47,24 +48,27 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
-    }/*
-//below method currently crashes app
+    }
+
+    //below method currently crashes app
     @Override
     protected void onStart() {
         super.onStart();
-
         currentUser = ParseUser.getCurrentUser();
         if (currentUser != null) {
             showProfileLoggedIn();
+
         } else {
             showProfileLoggedOut();
         }
     }
-*/
 
-     // Shows the profile of the given user. - currently crashes app when selecting log in
+
+    // Shows the profile of the given user. - currently crashes app when selecting log in
 
     private void showProfileLoggedIn() {
+        Intent intent = new Intent(getBaseContext(), MainMenuActivity.class);
+        startActivity(intent);
         titleTextView.setText(R.string.profile_title_logged_in);
         emailTextView.setText(currentUser.getEmail());
         String fullName = currentUser.getString("name");
@@ -75,7 +79,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-     // Show a message asking the user to log in, toggle login/logout button text.
+    // Show a message asking the user to log in, toggle login/logout button text.
 
     private void showProfileLoggedOut() {
         titleTextView.setText(R.string.profile_title_logged_out);
