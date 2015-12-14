@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp">
+
+    <TextView
+        android:id="@+id/textViewDeckName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:paddingRight="12dp"
+        android:paddingTop="15dp"
+        android:text="Deck Name: "
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textViewShareWith"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textViewDeckName"
+        android:paddingTop="30dp"
+        android:text="Who would you like to share your deck with?"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/textViewEMail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textViewShareWith"
+        android:layout_alignStart="@+id/textViewShareWith"
+        android:layout_below="@+id/textViewShareWith"
+        android:text="E-Mail Address:"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/editTextEMail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/spinnerDeckNames"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/spinnerDeckNames"
+        android:layout_below="@+id/textViewEMail"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        android:textSize="18sp" />
+
+    <Spinner
+        android:id="@+id/spinnerDeckNames"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textViewShareWith"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_toEndOf="@+id/textViewDeckName"
+        android:layout_toRightOf="@+id/textViewDeckName"
+        android:textSize="20sp" />
+
+</RelativeLayout>

@@ -15,4 +15,16 @@
     <string name="profile_logout_button_label">Log out</string>
     <string name="profile_title_logged_out">You must be logged in to view your profile</string>
     <string name="profile_login_button_label">Log in</string>
+
+    <string name="deck_name_prompt">Choose a Deck</string>
+    <string-array name="deck_name_arrays">
+        <item>Deck 1</item>
+        <item>Deck 2</item>
+        <item>Deck 3</item>
+        <item>CIS-410</item>
+        <item>CIS-480</item>
+        <item>CIS-490</item>
+        <item>Acronyms</item>
+    </string-array>
+
 </resources>

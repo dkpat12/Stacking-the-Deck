@@ -3,6 +3,7 @@ package net.dkpat.stackingthedeck;
 import android.content.Context;
 import android.media.Image;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -116,6 +117,16 @@ public class DeckFragment extends Fragment {
             }
         });
 
+        FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                    AddDeckDialogFragment cdd = new AddDeckDialogFragment();
+                    cdd.show(getActivity().getSupportFragmentManager(), "DeckDialogFragment");
+            }
+
+        });
+
         return view;
     }
 
@@ -167,14 +178,17 @@ public class DeckFragment extends Fragment {
                 Log.i("ContextMenu", "Item 1b was chosen");
                 return true;
             case R.id.action_share:
-                Log.i("ContextMenu", "Item 1b was chosen");
-                return true;
+                Log.i("ContextMenu", "Item 1d was chosen");
+                ShareDeckDialogFragment cdd = new ShareDeckDialogFragment();
+                cdd.show(getActivity().getSupportFragmentManager(), "ShareDeckDialogFragment");
             default:
                 Log.i("ContextMenu", "Item 1b was chosen");
                 return false;
         }
 
     }
+
+
 
 
     /**

@@ -1,24 +1,24 @@
 package net.dkpat.stackingthedeck;
 
 
+import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.Toolbar;
-import android.view.MenuInflater;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import net.dkpat.stackingthedeck.Model.Deck;
 import net.dkpat.stackingthedeck.Model.Flashcard;
 
 
 public class MainMenuActivity extends AppCompatActivity implements DeckFragment.OnDeckFragmentListener,
-        FlashcardFragment.OnFlashCardListFragmentInteractionListener{
+        FlashcardFragment.OnFlashCardListFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,18 +29,9 @@ public class MainMenuActivity extends AppCompatActivity implements DeckFragment.
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AddDeckDialogFragment cdd = new AddDeckDialogFragment();
-                cdd.show(getSupportFragmentManager(), "String");
-            }
-        });
-
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fragmentContainer,new DeckFragment());
+        fragmentTransaction.replace(R.id.fragmentContainer, new DeckFragment(), "DeckFragment");
         fragmentTransaction.commit();
     }
 
@@ -76,6 +67,5 @@ public class MainMenuActivity extends AppCompatActivity implements DeckFragment.
     public void onListFragmentInteraction(Flashcard item) {
         return;
     }
-
-
+    
 }
