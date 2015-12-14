@@ -66,8 +66,6 @@ public class FlashcardFragment extends Fragment {
             public ParseQuery<Flashcard> create() {
                 ParseQuery<Flashcard> query = ParseQuery.getQuery(Flashcard.class);
                 query.whereEqualTo("deck", deck);
-                query.orderByDescending("createdAt");
-                query.fromLocalDatastore();
                 return query;
             }
         };
@@ -80,11 +78,11 @@ public class FlashcardFragment extends Fragment {
             mList.setAdapter(new FlashcardListAdapter(this.getContext(), factory ));
         }
 
-        FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
+        FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.flashcardfab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity().getBaseContext(), EditFlashcardActivity.class);
+                Intent intent = new Intent(getActivity().getBaseContext(), CreateFlashcardActivity.class);
                 intent.putExtra("DeckId", deck.getObjectId());
                 startActivity(intent);
             }
