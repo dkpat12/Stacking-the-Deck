@@ -25,28 +25,31 @@ public class FlashcardListAdapter extends ParseQueryAdapter<Flashcard> {
     @Override
     public View getItemView(Flashcard flashcard, View view, ViewGroup parent) {
         ViewHolder holder;
+        final Flashcard mFlashcard = flashcard;
+
+
         if (view == null) {
             view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.fragment_flashcard_list_item, parent, false);
             holder = new ViewHolder();
-            holder.mflashcardTerm = (TextView) view
-                    .findViewById(R.id.flashcard_term);
+            holder.mflashcardTerm = (TextView) view.findViewById(R.id.flashcard_term);
+            holder.mflashcardDefinition = (TextView) view.findViewById(R.id.flashcard_definition);
+
             view.setTag(holder);
         } else {
             holder = (ViewHolder) view.getTag();
         }
 
         TextView FlashcardTerm = holder.mflashcardTerm;
-        FlashcardTerm.setText(flashcard.getTerm());
-//        if (flashcard.isDraft()) {
-//            todoTitle.setTypeface(null, Typeface.ITALIC);
-//        } else {
-//            todoTitle.setTypeface(null, Typeface.NORMAL);
-//        }
+        FlashcardTerm.setText(mFlashcard.getTerm());
+        TextView FlashcardDefinition = holder.mflashcardTerm;
+        FlashcardDefinition.setText(mFlashcard.getDefinition());
+
         return view;
     }
 
     private static class ViewHolder {
         TextView mflashcardTerm;
+        TextView mflashcardDefinition;
     }
 }

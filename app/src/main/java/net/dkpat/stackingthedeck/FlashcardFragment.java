@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.parse.FindCallback;
@@ -32,7 +33,7 @@ public class FlashcardFragment extends Fragment {
 
     private LayoutInflater inflater;
     private OnFlashCardListFragmentInteractionListener mListener;
-    private ParseQueryAdapter<Flashcard> flashcardListAdapter;
+    private FlashcardListAdapter adapter;
     private Deck deck;
 
     /**
@@ -59,6 +60,7 @@ public class FlashcardFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_flashcard_list, container, false);
+        ListView mList = (ListView) view.findViewById(R.id.flashcard_list);
 
 
         // Set up the Parse query to use in the adapter
@@ -70,13 +72,23 @@ public class FlashcardFragment extends Fragment {
             }
         };
 
+        Context context = view.getContext();
+        adapter = new FlashcardListAdapter(context, factory );
         // Set the adapter
-        // Parse does not support RecyclerView adapters currently. Should switch code to use Listview
-        if (view instanceof ListView) {
-            Context context = view.getContext();
-            ListView mList = (ListView) view;
-            mList.setAdapter(new FlashcardListAdapter(this.getContext(), factory ));
-        }
+        mList.setAdapter(adapter);
+
+        mList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Flashcard flashcard = adapter.getItem(position);
+
+                Intent intent = new Intent(getActivity().getBaseContext(), EditFlashcardActivity.class);
+                intent.putExtra("FlashcardId", flashcard.getObjectId());
+                startActivity(intent);
+            }
+        });
+
 
         FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.flashcardfab);
         fab.setOnClickListener(new View.OnClickListener() {

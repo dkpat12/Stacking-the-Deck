@@ -38,7 +38,7 @@ public class Flashcard extends ParseObject {
     }
 
     // Use getString and others to access fields
-    public String getDefintion() {
+    public String getDefinition() {
         return getString("definition");
     }
 
