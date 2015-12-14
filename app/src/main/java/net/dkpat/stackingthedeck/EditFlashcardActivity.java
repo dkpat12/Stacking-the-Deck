@@ -32,7 +32,7 @@ public class EditFlashcardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_flashcard);
 
-        final String flashcardId = getIntent().getStringExtra("FlashcardId");
+        String flashcardId = getIntent().getStringExtra("flashcardId");
 
         intent = getIntent();
 
