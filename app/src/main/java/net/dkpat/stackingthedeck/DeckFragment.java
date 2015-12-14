@@ -1,6 +1,7 @@
 package net.dkpat.stackingthedeck;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -100,20 +101,19 @@ public class DeckFragment extends Fragment {
         mList.setAdapter(adapter);
         registerForContextMenu(mList);
 
-        //Set Click listener
+        //Set Click listener for Quiz Activity
         mList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //Get the clicked deck object
                 Log.d("Task", "OnItemClick");
                 Deck deck = adapter.getItem(position);
-                //Pass the deck object
-                //mListener.onDeckSelect(deck);
 
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragmentContainer, FlashcardFragment.newInstance(deck));
-                fragmentTransaction.commit();
+                Intent intent = new Intent(getActivity().getBaseContext(), QuizActivity.class);
+                //Pass Deck id
+                intent.putExtra("deck_id", deck.getObjectId());
+                //Start Quiz Activity
+                startActivity(intent);
             }
         });
 
