@@ -1,75 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp">
 
     <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Deck Name: "
-            android:textSize="25dp"
-            android:id="@+id/textViewDeckName"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:paddingTop="15dp"
-            android:paddingLeft="20dp"
-            android:paddingRight="12dp"
+        android:id="@+id/textViewDeckName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:paddingRight="12dp"
+        android:paddingTop="15dp"
+        android:text="Deck Name: "
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="25sp"
         android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Who would you like to share your deck with?"
-            android:textSize="14dp"
-            android:id="@+id/textViewShareWith"
-            android:paddingTop="30dp"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:layout_below="@+id/textViewDeckName"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+    <TextView
+        android:id="@+id/textViewShareWith"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textViewDeckName"
+        android:paddingTop="30dp"
+        android:text="Who would you like to share your deck with?"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textSize="14sp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="E-Mail Address:"
-            android:textSize="15dp"
-            android:id="@+id/textViewEMail"
-            android:layout_below="@+id/textViewShareWith"
-            android:layout_alignLeft="@+id/textViewShareWith"
-            android:layout_alignStart="@+id/textViewShareWith"
-            android:padding="18dp"
-            android:textStyle="bold" />
+    <TextView
+        android:id="@+id/textViewEMail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textViewShareWith"
+        android:layout_alignStart="@+id/textViewShareWith"
+        android:layout_below="@+id/textViewShareWith"
+        android:text="E-Mail Address:"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textSize="15sp"
+        android:textStyle="bold" />
 
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
-            android:ems="10"
-            android:textSize="18dp"
-            android:id="@+id/editTextEMail"
-            android:paddingLeft="30dp"
-            android:paddingRight="30dp"
-            android:layout_below="@+id/textViewEMail"
-            android:layout_alignRight="@+id/spinnerDeckNames"
-            android:layout_alignEnd="@+id/spinnerDeckNames"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+    <EditText
+        android:id="@+id/editTextEMail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/spinnerDeckNames"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/spinnerDeckNames"
+        android:layout_below="@+id/textViewEMail"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        android:textSize="18sp" />
 
-        <Spinner
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/spinnerDeckNames"
-            android:textSize="20dp"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_toRightOf="@+id/textViewDeckName"
-            android:layout_toEndOf="@+id/textViewDeckName"
-            android:layout_above="@+id/textViewShareWith"
-            android:paddingRight="20dp"/>
-
+    <Spinner
+        android:id="@+id/spinnerDeckNames"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textViewShareWith"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_toEndOf="@+id/textViewDeckName"
+        android:layout_toRightOf="@+id/textViewDeckName"
+        android:textSize="20sp" />
 
 </RelativeLayout>

@@ -29,27 +29,39 @@ public class MainMenuActivity extends AppCompatActivity implements DeckFragment.
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Fragment currentFragment = getFragmentManager().findFragmentById(R.id.fragmentContainer);
-                if (currentFragment instanceof (Fragment) DeckFragment) {
-                    AddDeckDialogFragment cdd = new AddDeckDialogFragment();
-                    cdd.show(getSupportFragmentManager(), "String");
-                }
-                if (currentFragment instanceof CardFragment) {
-                    EditFlashcardActivity cdd = new EditFlashcardActivity();
-                    Intent intent = new intent(getBaseContext(), EditFlashcardActivity.class);
-                    startActivity(intent);
-                }
-
-            }
-        });
+//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Fragment currentFragment = getFragmentManager().findFragmentById(R.id.fragmentContainer);
+//                Fragment deckFragment = getFragmentManager().findFragmentByTag("DeckFragment");
+//                Fragment flashcardFragment = getFragmentManager().findFragmentByTag("FlashcardFragment");
+//
+//                if (deckFragment != null && deckFragment.isVisible()) {
+//                    AddDeckDialogFragment cdd = new AddDeckDialogFragment();
+//                    cdd.show(getSupportFragmentManager(), "DeckDialogFragment");
+//                }
+//                if (flashcardFragment != null && flashcardFragment.isVisible()) {
+//                    Intent intent = new Intent(getBaseContext(), EditFlashcardActivity.class);
+//                    startActivity(intent);
+//                }
+////                if (myFragment != null && myFragment.isVisible()) {
+////                    if (currentFragment instanceof (Fragment) DeckFragment){
+////                        AddDeckDialogFragment cdd = new AddDeckDialogFragment();
+////                        cdd.show(getSupportFragmentManager(), "String");
+////                    }
+////                    if (currentFragment instanceof CardFragment) {
+////                        EditFlashcardActivity cdd = new EditFlashcardActivity();
+////                        Intent intent = new Intent(getBaseContext(), EditFlashcardActivity.class);
+////                    startActivity(intent);
+////                }
+//            }
+//
+//        });
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fragmentContainer,new DeckFragment());
+        fragmentTransaction.replace(R.id.fragmentContainer, new DeckFragment(), "DeckFragment");
         fragmentTransaction.commit();
     }
 

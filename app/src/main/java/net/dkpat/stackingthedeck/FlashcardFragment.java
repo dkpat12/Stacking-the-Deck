@@ -2,6 +2,7 @@ package net.dkpat.stackingthedeck;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -77,6 +78,16 @@ public class FlashcardFragment extends Fragment {
             ListView mList = (ListView) view;
             mList.setAdapter(new FlashcardListAdapter(this.getContext(), factory ));
         }
+
+        FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AddDeckDialogFragment cdd = new AddDeckDialogFragment();
+                cdd.show(getActivity().getSupportFragmentManager(), "DeckDialogFragment");
+            }
+
+        });
 
         return view;
     }
