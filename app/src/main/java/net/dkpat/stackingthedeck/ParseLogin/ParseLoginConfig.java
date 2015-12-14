@@ -46,13 +46,6 @@ public class ParseLoginConfig {
     private CharSequence parseSignupSubmitButtonText;
     private Boolean parseSignupNameFieldEnabled;
 
-    private Boolean facebookLoginEnabled;
-    private CharSequence facebookLoginButtonText;
-    private Collection<String> facebookLoginPermissions;
-
-    private Boolean twitterLoginEnabled;
-    private CharSequence twitterLoginButtonText;
-
     public Integer getAppLogo() {
         return appLogo;
     }
@@ -145,70 +138,6 @@ public class ParseLoginConfig {
 
     public void setParseSignupNameFieldEnabled(Boolean parseSignupNameFieldEnabled) {
         this.parseSignupNameFieldEnabled = parseSignupNameFieldEnabled;
-    }
-
-    public boolean isFacebookLoginEnabled() {
-        if (facebookLoginEnabled != null) {
-            return facebookLoginEnabled;
-        } else {
-            return false;
-        }
-    }
-
-    public void setFacebookLoginEnabled(boolean facebookLoginEnabled) {
-        this.facebookLoginEnabled = facebookLoginEnabled;
-    }
-
-    public CharSequence getFacebookLoginButtonText() {
-        return facebookLoginButtonText;
-    }
-
-    public void setFacebookLoginButtonText(CharSequence facebookLoginButtonText) {
-        this.facebookLoginButtonText = facebookLoginButtonText;
-    }
-
-    public Collection<String> getFacebookLoginPermissions() {
-        if (facebookLoginPermissions != null) {
-            return Collections.unmodifiableCollection(facebookLoginPermissions);
-        } else {
-            return null;
-        }
-    }
-
-    public void setFacebookLoginPermissions(Collection<String> permissions) {
-        if (permissions != null) {
-            facebookLoginPermissions = new ArrayList<String>(permissions.size());
-            facebookLoginPermissions.addAll(permissions);
-        }
-    }
-
-    /* package */ boolean isFacebookLoginNeedPublishPermissions() {
-        if (facebookLoginPermissions != null) {
-            return facebookLoginPermissions.contains("publish_actions") ||
-                    facebookLoginPermissions.contains("publish_pages");
-        } else {
-            return false;
-        }
-    }
-
-    public boolean isTwitterLoginEnabled() {
-        if (twitterLoginEnabled != null) {
-            return twitterLoginEnabled;
-        } else {
-            return false;
-        }
-    }
-
-    public void setTwitterLoginEnabled(boolean twitterLoginEnabled) {
-        this.twitterLoginEnabled = twitterLoginEnabled;
-    }
-
-    public CharSequence getTwitterLoginButtonText() {
-        return twitterLoginButtonText;
-    }
-
-    public void setTwitterLoginButtonText(CharSequence twitterLoginButtonText) {
-        this.twitterLoginButtonText = twitterLoginButtonText;
     }
 
     /**
