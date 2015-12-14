@@ -159,6 +159,10 @@ public class DeckFragment extends Fragment {
      * This will be invoked when a menu item is selected
      */
 
+    public void refresh (){
+        adapter.notifyDataSetChanged();
+    }
+
     @Override
     public boolean onContextItemSelected(MenuItem item) {
 
@@ -171,6 +175,7 @@ public class DeckFragment extends Fragment {
                 Log.i("ContextMenu", "Item 1a was chosen");
                 Deck deck = adapter.getItem(position);
                 deck.deleteInBackground();
+                refresh();
                 return true;
             case R.id.action_edit_deck:
                 Log.i("ContextMenu", "Item 1b was chosen");
@@ -189,7 +194,6 @@ public class DeckFragment extends Fragment {
                 Log.i("ContextMenu", "Item 1e was chosen");
                 return false;
         }
-
     }
 
 
