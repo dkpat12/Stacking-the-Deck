@@ -1,6 +1,7 @@
 package net.dkpat.stackingthedeck;
 
 import android.content.Context;
+import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -30,7 +31,7 @@ import net.dkpat.stackingthedeck.helpers.FlashcardListAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class QuizActivity extends AppCompatActivity {
+public class QuizActivity extends AppCompatActivity implements CardFragment.OnFragmentInteractionListener{
 
     private Deck mDeck;
     private ViewPager mPager;
@@ -72,6 +73,11 @@ public class QuizActivity extends AppCompatActivity {
                         public void done(List<Flashcard> itemList, ParseException e) {
                             if (e == null) {
                                 mFlashcards = itemList;
+
+                                // Instantiate a ViewPager and a PagerAdapter.
+                                mPager = (ViewPager) findViewById(R.id.pager);
+                                mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
+                                mPager.setAdapter(mPagerAdapter);
                             } else {
                                 Log.d("item", "Error: " + e.getMessage());
                             }
@@ -85,10 +91,8 @@ public class QuizActivity extends AppCompatActivity {
             }
         });
 
-        // Instantiate a ViewPager and a PagerAdapter.
-        mPager = (ViewPager) findViewById(R.id.pager);
-        mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
-        mPager.setAdapter(mPagerAdapter);
+
+
     }
 
     @Override
@@ -101,6 +105,11 @@ public class QuizActivity extends AppCompatActivity {
             // Otherwise, select the previous step.
             mPager.setCurrentItem(mPager.getCurrentItem() - 1);
         }
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 
     /**

@@ -37,13 +37,13 @@
         android:layout_alignEnd="@+id/pager"
         android:padding="15dp" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="WooHoo! I got this!"
-        android:id="@+id/btnWooHoo"
-        android:layout_alignBottom="@+id/pager"
-        android:layout_centerHorizontal="true"
-        android:padding="15dp" />
+    <!--<Button-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="WooHoo! I got this!"-->
+        <!--android:id="@+id/btnWooHoo"-->
+        <!--android:layout_alignBottom="@+id/pager"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:padding="15dp" />-->
 
 </RelativeLayout>
