@@ -46,6 +46,7 @@
             android:value="@string/parse_client_key" />
 
         <activity android:name=".EditDeckActivity"></activity>
+        <activity android:name=".EditFlashcardActivity"></activity>
         <activity android:name=".CreateFlashcardActivity"></activity>
     </application>
 
