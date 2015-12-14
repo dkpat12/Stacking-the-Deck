@@ -8,6 +8,7 @@ package net.dkpat.stackingthedeck.ParseLogin;
 import android.app.Activity;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,7 +36,6 @@ public class ParseLoginFragment extends ParseLoginFragmentBase {
     }
 
     private static final String LOG_TAG = "ParseLoginFragment";
-    private static final String USER_OBJECT_NAME_FIELD = "name";
 
     private View parseLogin;
     private EditText usernameField;
@@ -46,7 +46,7 @@ public class ParseLoginFragment extends ParseLoginFragmentBase {
     private ParseLoginFragmentListener loginFragmentListener;
     private ParseOnLoginSuccessListener onLoginSuccessListener;
 
-    private com.parse.ui.ParseLoginConfig config;
+    private net.dkpat.stackingthedeck.ParseLogin.ParseLoginConfig config;
 
     public static ParseLoginFragment newInstance(Bundle configOptions) {
         ParseLoginFragment loginFragment = new ParseLoginFragment();
@@ -62,7 +62,7 @@ public class ParseLoginFragment extends ParseLoginFragmentBase {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent,
                              Bundle savedInstanceState) {
-        config = com.parse.ui.ParseLoginConfig.fromBundle(getArguments(), getActivity());
+        config = net.dkpat.stackingthedeck.ParseLogin.ParseLoginConfig.fromBundle(getArguments(), getActivity());
 
         View v = inflater.inflate(R.layout.com_parse_ui_parse_login_fragment,
                 parent, false);
@@ -74,12 +74,14 @@ public class ParseLoginFragment extends ParseLoginFragmentBase {
         parseLoginButton = (Button) v.findViewById(R.id.parse_login_button);
         parseSignupButton = (Button) v.findViewById(R.id.parse_signup_button);
 
+        config.setParseLoginEnabled(true);
         if (appLogo != null && config.getAppLogo() != null) {
             appLogo.setImageResource(config.getAppLogo());
         }
         if (allowParseLoginAndSignup()) {
             setUpParseLoginAndSignup();
         }
+        Log.d("Allow", Boolean.toString(allowParseLoginAndSignup()));
         return v;
     }
 

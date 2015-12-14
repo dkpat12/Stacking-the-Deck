@@ -17,14 +17,14 @@ import android.widget.TextView;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.RequestPasswordResetCallback;
-import com.parse.ui.ParseLoginConfig;
+import net.dkpat.stackingthedeck.ParseLogin.ParseLoginConfig;
 import net.dkpat.stackingthedeck.R;
-import com.parse.ui.ParseOnLoadingListener;
+import net.dkpat.stackingthedeck.ParseLogin.ParseOnLoadingListener;
 
 /**
  * Fragment for the login help screen for resetting the user's password.
  */
-public class ParseLoginHelpFragment extends com.parse.ui.ParseLoginFragmentBase implements OnClickListener {
+public class ParseLoginHelpFragment extends net.dkpat.stackingthedeck.ParseLogin.ParseLoginFragmentBase implements OnClickListener {
 
     public interface ParseOnLoginHelpSuccessListener {
         public void onLoginHelpSuccess();
@@ -36,7 +36,7 @@ public class ParseLoginHelpFragment extends com.parse.ui.ParseLoginFragmentBase 
     private boolean emailSent = false;
     private ParseOnLoginHelpSuccessListener onLoginHelpSuccessListener;
 
-    private com.parse.ui.ParseLoginConfig config;
+    private net.dkpat.stackingthedeck.ParseLogin.ParseLoginConfig config;
 
     private static final String LOG_TAG = "ParseLoginHelpFragment";
 

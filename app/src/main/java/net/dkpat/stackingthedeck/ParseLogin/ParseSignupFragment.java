@@ -17,15 +17,15 @@ import android.widget.ImageView;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
-import com.parse.ui.*;
 import com.parse.ui.ParseLoginConfig;
-import com.parse.ui.ParseOnLoadingListener;
-import com.parse.ui.ParseOnLoginSuccessListener;
+import net.dkpat.stackingthedeck.ParseLogin.ParseOnLoadingListener;
+import net.dkpat.stackingthedeck.ParseLogin.ParseOnLoginSuccessListener;
+import net.dkpat.stackingthedeck.R;
 
 /**
  * Fragment for the user signup screen.
  */
-public class ParseSignupFragment extends com.parse.ui.ParseLoginFragmentBase implements OnClickListener {
+public class ParseSignupFragment extends net.dkpat.stackingthedeck.ParseLogin.ParseLoginFragmentBase implements OnClickListener {
     public static final String USERNAME = "com.parse.ui.ParseSignupFragment.USERNAME";
     public static final String PASSWORD = "com.parse.ui.ParseSignupFragment.PASSWORD";
 
@@ -35,7 +35,7 @@ public class ParseSignupFragment extends com.parse.ui.ParseLoginFragmentBase imp
     private EditText emailField;
     private EditText nameField;
     private Button createAccountButton;
-    private com.parse.ui.ParseOnLoginSuccessListener onLoginSuccessListener;
+    private net.dkpat.stackingthedeck.ParseLogin.ParseOnLoginSuccessListener onLoginSuccessListener;
 
     private net.dkpat.stackingthedeck.ParseLogin.ParseLoginConfig config;
     private int minPasswordLength;
@@ -108,14 +108,14 @@ public class ParseSignupFragment extends com.parse.ui.ParseLoginFragmentBase imp
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        if (activity instanceof com.parse.ui.ParseOnLoginSuccessListener) {
+        if (activity instanceof net.dkpat.stackingthedeck.ParseLogin.ParseOnLoginSuccessListener) {
             onLoginSuccessListener = (ParseOnLoginSuccessListener) activity;
         } else {
             throw new IllegalArgumentException(
                     "Activity must implemement ParseOnLoginSuccessListener");
         }
 
-        if (activity instanceof com.parse.ui.ParseOnLoadingListener) {
+        if (activity instanceof net.dkpat.stackingthedeck.ParseLogin.ParseOnLoadingListener) {
             onLoadingListener = (ParseOnLoadingListener) activity;
         } else {
             throw new IllegalArgumentException(

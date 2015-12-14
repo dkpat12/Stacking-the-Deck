@@ -20,26 +20,17 @@ import java.util.Set;
  * Configurations for the ParseLoginActivity.
  */
 public class ParseLoginConfig {
-    public static final String APP_LOGO = "com.parse.ui.ParseLoginActivity.APP_LOGO";
-    public static final String PARSE_LOGIN_ENABLED = "com.parse.ui.ParseLoginActivity.PARSE_LOGIN_ENABLED";
-    public static final String PARSE_LOGIN_BUTTON_TEXT = "com.parse.ui.ParseLoginActivity.PARSE_LOGIN_BUTTON_TEXT";
-    public static final String PARSE_SIGNUP_BUTTON_TEXT = "com.parse.ui.ParseLoginActivity.PARSE_SIGNUP_BUTTON_TEXT";
-    public static final String PARSE_LOGIN_HELP_TEXT = "com.parse.ui.ParseLoginActivity.PARSE_LOGIN_HELP_TEXT";
+    public static final String APP_LOGO = "net.dkpat.stackingthedeck.ParseLogin.ParseLoginActivity.APP_LOGO";
+    public static final String PARSE_LOGIN_ENABLED = "net.dkpat.stackingthedeck.ParseLogin.ParseLoginActivity.PARSE_LOGIN_ENABLED";
+    public static final String PARSE_LOGIN_BUTTON_TEXT = "net.dkpat.stackingthedeck.ParseLogin.ParseLoginActivity.PARSE_LOGIN_BUTTON_TEXT";
+    public static final String PARSE_SIGNUP_BUTTON_TEXT = "net.dkpat.stackingthedeck.ParseLogin.ParseLoginActivity.PARSE_SIGNUP_BUTTON_TEXT";
+    public static final String PARSE_LOGIN_HELP_TEXT = "net.dkpat.stackingthedeck.ParseLogin.ParseLoginActivity.PARSE_LOGIN_HELP_TEXT";
     public static final String PARSE_LOGIN_INVALID_CREDENTIALS_TOAST_TEXT = "com.parse.ui.ParseLoginActivity.PARSE_LOGIN_INVALID_CREDENTIALS_TEXT";
-    public static final String PARSE_LOGIN_EMAIL_AS_USERNAME = "com.parse.ui.ParseLoginActivity.PARSE_LOGIN_EMAIL_AS_USERNAME";
-    public static final String PARSE_SIGNUP_MIN_PASSWORD_LENGTH = "com.parse.ui.ParseLoginActivity.PARSE_SIGNUP_MIN_PASSWORD_LENGTH";
-    public static final String PARSE_SIGNUP_SUBMIT_BUTTON_TEXT = "com.parse.ui.ParseLoginActivity.PARSE_SIGNUP_SUBMIT_BUTTON_TEXT";
-    public static final String PARSE_SIGNUP_NAME_FIELD_ENABLED = "com.parse.ui.ParseLoginActivity.PARSE_SIGNUP_NAME_FIELD_ENABLED";
-    public static final String FACEBOOK_LOGIN_ENABLED = "com.parse.ui.ParseLoginActivity.FACEBOOK_LOGIN_ENABLED";
-    public static final String FACEBOOK_LOGIN_BUTTON_TEXT = "com.parse.ui.ParseLoginActivity.FACEBOOK_LOGIN_BUTTON_TEXT";
-    public static final String FACEBOOK_LOGIN_PERMISSIONS = "com.parse.ui.ParseLoginActivity.FACEBOOK_LOGIN_PERMISSIONS";
-    public static final String TWITTER_LOGIN_ENABLED = "com.parse.ui.ParseLoginActivity.TWITTER_LOGIN_ENABLED";
-    public static final String TWITTER_LOGIN_BUTTON_TEXT = "com.parse.ui.ParseLoginActivity.TWITTER_LOGIN_BUTTON_TEXT";
+    public static final String PARSE_LOGIN_EMAIL_AS_USERNAME = "net.dkpat.stackingthedeck.ParseLogin.ParseLoginActivity.PARSE_LOGIN_EMAIL_AS_USERNAME";
+    public static final String PARSE_SIGNUP_MIN_PASSWORD_LENGTH = "net.dkpat.stackingthedeck.ParseLogin.ParseLoginActivity.PARSE_SIGNUP_MIN_PASSWORD_LENGTH";
+    public static final String PARSE_SIGNUP_SUBMIT_BUTTON_TEXT = "net.dkpat.stackingthedeck.ParseLogin.ParseLoginActivity.PARSE_SIGNUP_SUBMIT_BUTTON_TEXT";
+    public static final String PARSE_SIGNUP_NAME_FIELD_ENABLED = "net.dkpat.stackingthedeck.ParseLogin.ParseLoginActivity.PARSE_SIGNUP_NAME_FIELD_ENABLED";
 
-    // For internally serializing to/from string array (the public analog above is for resource from activity meta-data).
-    private static final String FACEBOOK_LOGIN_PERMISSIONS_STRING_ARRAY = "com.parse.ui.ParseLoginActivity.FACEBOOK_LOGIN_PERMISSIONS_STRING_ARRAY";
-
-    private static final String LOG_TAG = "com.parse.ui.ParseLoginConfig";
 
     // Use boxed types so that we can differentiate between a setting not set,
     // versus its default value.  This is useful for merging options set from code
@@ -265,25 +256,6 @@ public class ParseLoginConfig {
         }
         if (parseSignupNameFieldEnabled != null) {
             bundle.putBoolean(PARSE_SIGNUP_NAME_FIELD_ENABLED, parseSignupNameFieldEnabled);
-        }
-
-        if (facebookLoginEnabled != null) {
-            bundle.putBoolean(FACEBOOK_LOGIN_ENABLED, facebookLoginEnabled);
-        }
-        if (facebookLoginButtonText != null) {
-            bundle.putCharSequence(FACEBOOK_LOGIN_BUTTON_TEXT,
-                    facebookLoginButtonText);
-        }
-        if (facebookLoginPermissions != null) {
-            bundle.putStringArray(FACEBOOK_LOGIN_PERMISSIONS_STRING_ARRAY,
-                    facebookLoginPermissions.toArray(new String[0]));
-        }
-
-        if (twitterLoginEnabled != null) {
-            bundle.putBoolean(TWITTER_LOGIN_ENABLED, twitterLoginEnabled);
-        }
-        if (twitterLoginButtonText != null) {
-            bundle.putCharSequence(TWITTER_LOGIN_BUTTON_TEXT, twitterLoginButtonText);
         }
 
         return bundle;
