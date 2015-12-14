@@ -33,7 +33,7 @@ public class ShareDeckDialogFragment extends android.support.v4.app.DialogFragme
         return s;
     }
 
-    protected Spinner mDecksSpinner;
+    public Spinner mDecksSpinner;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
