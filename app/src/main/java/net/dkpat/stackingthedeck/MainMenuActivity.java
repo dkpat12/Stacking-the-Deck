@@ -37,6 +37,11 @@ public class MainMenuActivity extends AppCompatActivity implements DeckFragment.
                 cdd.show(getSupportFragmentManager(), "String");
             }
         });
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragmentContainer,new DeckFragment());
+        fragmentTransaction.commit();
     }
 
 

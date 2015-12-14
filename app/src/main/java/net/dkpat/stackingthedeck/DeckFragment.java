@@ -9,8 +9,10 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.view.ActionMode;
 import android.support.v7.widget.PopupMenu;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,7 +38,7 @@ import java.util.List;
 
 /**
  * A fragment representing a list of Items.
- * <p>
+ * <p/>
  * Activities containing this fragment MUST implement the {@link OnDeckFragmentListener}
  * interface.
  */
@@ -95,68 +97,24 @@ public class DeckFragment extends Fragment {
         adapter = new DeckListAdapter(context, factory);
         // Set the adapter
         mList.setAdapter(adapter);
+        registerForContextMenu(mList);
 
-        Log.d("Count", String.valueOf(mList.getCount()));
-        Log.d("Count", String.valueOf(adapter.getCount()));
+        //Set Click listener
+        mList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //Get the clicked deck object
+                Log.d("Task", "OnItemClick");
+                Deck deck = adapter.getItem(position);
+                //Pass the deck object
+                //mListener.onDeckSelect(deck);
 
-//        ParseQuery<Deck> query = ParseQuery.getQuery("Deck");
-//        query.whereEqualTo("owner", ParseUser.getCurrentUser());
-//        query.findInBackground(new FindCallback<Deck>() {
-//            @Override
-//            public void done(List<Deck> objects, ParseException e) {
-//                if (e == null) {
-//                    adapter.addAll(objects);
-//                    Log.d("Task", "Got to add all");
-//                    Log.d("Count", String.valueOf(adapter.getCount()));
-//
-//                } else {
-//                    Toast.makeText(getContext(), "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
-//                }
-//            }
-//        });
-
-//        //Set Click listener
-//        mList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                //Get the clicked deck object
-//                Log.d("Task", "OnItemClick");
-//                Deck deck = adapter.getItem(position);
-//                //Pass the deck object
-//                //mListener.onDeckSelect(deck);
-//
-//                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-//                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//                fragmentTransaction.replace(R.id.fragmentContainer, FlashcardFragment.newInstance(deck));
-//                fragmentTransaction.commit();
-//            }
-//        });
-
-        //I'm so sorry. I have not found any other way to do this >_<
-        for (int i = 0; i < mList.getAdapter().getCount(); i++) {
-            //For menu's sake
-            currentI = i;
-            Log.d("Task", "Loop");
-            View deckItem = mList.getChildAt(i);
-
-            ImageView menu = (ImageView) deckItem.findViewById(R.id.deck_menu);
-
-            menu.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    //Creating the instance of PopupMenu
-                    Log.d("Task", "OnMenuClick");
-                    PopupMenu popup = new PopupMenu(getActivity(), v);
-                    popup.setOnMenuItemClickListener(new onMenuItemClickListener_View(v));
-                    //Inflating the Popup using xml file
-                    popup.getMenuInflater().inflate(R.menu.menu_deck_context, popup.getMenu());
-                    popup.show();
-                }
-            });
-            menu.setId(i);
-        }
-
-        Log.d("Count", String.valueOf(adapter.getCount()));
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragmentContainer, FlashcardFragment.newInstance(deck));
+                fragmentTransaction.commit();
+            }
+        });
 
         return view;
     }
@@ -179,40 +137,43 @@ public class DeckFragment extends Fragment {
         mListener = null;
     }
 
-    private class onMenuItemClickListener_View implements PopupMenu.OnMenuItemClickListener {
-        View mView;
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        getActivity().getMenuInflater().inflate(R.menu.menu_deck_context, menu);
+    }
 
-        public onMenuItemClickListener_View(View v) {
-            mView = v;
+    /**
+     * This will be invoked when a menu item is selected
+     */
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        int position = info.position;
+
+        switch (item.getItemId()) {
+            case R.id.action_delete:
+                Log.i("ContextMenu", "Item 1a was chosen");
+                return true;
+            case R.id.action_edit_deck:
+                Log.i("ContextMenu", "Item 1b was chosen");
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragmentContainer, FlashcardFragment.newInstance(adapter.getItem(position)));
+                fragmentTransaction.commit();
+                return true;
+            case R.id.action_rename:
+                Log.i("ContextMenu", "Item 1b was chosen");
+                return true;
+            case R.id.action_share:
+                Log.i("ContextMenu", "Item 1b was chosen");
+                return true;
+            default:
+                Log.i("ContextMenu", "Item 1b was chosen");
+                return false;
         }
 
-        int i = mView.getId();
-
-        //registering popup with OnMenuItemClickListener
-        @Override
-        public boolean onMenuItemClick(MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.action_delete:
-                    Log.i("ContextMenu", "Item 1a was chosen");
-                    return true;
-                case R.id.action_edit_deck:
-                    Log.i("ContextMenu", "Item 1b was chosen");
-                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.fragmentContainer, FlashcardFragment.newInstance(adapter.getItem(i)));
-                    fragmentTransaction.commit();
-                    return true;
-                case R.id.action_rename:
-                    Log.i("ContextMenu", "Item 1b was chosen");
-                    return true;
-                case R.id.action_share:
-                    Log.i("ContextMenu", "Item 1b was chosen");
-                    return true;
-                default:
-                    Log.i("ContextMenu", "Item 1b was chosen");
-                    return false;
-            }
-        }
     }
 
 
@@ -221,7 +182,7 @@ public class DeckFragment extends Fragment {
      * fragment to allow an interaction in this fragment to be communicated
      * to the activity and potentially other fragments contained in that
      * activity.
-     * <p>
+     * <p/>
      * See the Android Training lesson <a href=
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
