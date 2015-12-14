@@ -24,6 +24,10 @@ import net.dkpat.stackingthedeck.Model.Deck;
  */
 public class ShareDeckDialogFragment extends android.support.v4.app.DialogFragment {
 
+    public ShareDeckDialogFragment() {
+
+    }
+
     static ShareDeckDialogFragment newInstance(int num) {
         ShareDeckDialogFragment s = new ShareDeckDialogFragment();
 
@@ -38,30 +42,32 @@ public class ShareDeckDialogFragment extends android.support.v4.app.DialogFragme
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
-
-    // Wigets - GUI
-    Spinner spinnerDeckNames;
-
-    // Adapter
-    ArrayAdapter<String> adapterDeckName;
-
-    // Get Deck Title..
-//    private void openShareView(Deck deck) {
-//        Intent i = new Intent(this, ShareDeckDialogFragment.class);
-//        startActivityForResult(i, EDIT_ACTIVITY_CODE);
-//    }
-
+//
+//    // Wigets - GUI
+//    Spinner spinnerDeckNames;
+//
+//    // Adapter
+//    ArrayAdapter<String> adapterDeckName;
+//
+//    // Get Deck Title..
+////    private void openShareView(Deck deck) {
+////        Intent i = new Intent(this, ShareDeckDialogFragment.class);
+////        startActivityForResult(i, EDIT_ACTIVITY_CODE);
+////    }
+//
+//    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+//
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setView(R.layout.dialog_fragment_share_deck);
-
-        // Initialize Spinner
-        spinnerDeckNames = (Spinner) spinnerDeckNames.findViewById(R.id.spinnerDeckNames);
+//
+//        // Initialize Spinner
+//        spinnerDeckNames = (Spinner) spinnerDeckNames.findViewById(R.id.spinnerDeckNames);
 
 //        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
 //                this, R.array.deck_name_arrays, android.R.layout.simple_spinner_item);
@@ -69,44 +75,44 @@ public class ShareDeckDialogFragment extends android.support.v4.app.DialogFragme
 //        spinnerDeckNames.setAdapter(adapter);
 
 
-        // Deck Item Selected Listener
-        spinnerDeckNames.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
-            @Override
-            public void onItemSelected(AdapterView<?> adapter, View view,
-                                       int position, long id) {
-                // On selecting a spinner item
-                String item = adapter.getItemAtPosition(position).toString();
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-        builder.setMessage("Share a Deck")
-                .setPositiveButton("Share", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                        // Select Deck Title
-
-
-                        Dialog s = (Dialog) dialog;
-                        EditText eMailShare = (EditText) s.findViewById(R.id.editTextEMail);
-
-                        //Share Deck through Parse..
-
-                        Deck deck = new Deck();
-
-                        deck.setName(spinnerDeckNames.getSelectedItem().toString());
-                        deck.setOwner(ParseUser.getCurrentUser());
-                        deck.setDraft(true);
-
-                        //Share Deck through Parse..
-
-                        deck.saveEventually();
+//        // Deck Item Selected Listener
+//        spinnerDeckNames.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//
+//            @Override
+//            public void onItemSelected(AdapterView<?> adapter, View view,
+//                                       int position, long id) {
+//                // On selecting a spinner item
+//                String item = adapter.getItemAtPosition(position).toString();
+//
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//
+//            }
+//        });
+//        builder.setMessage("Share a Deck")
+//                .setPositiveButton("Share", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//
+//                        // Select Deck Title
+//
+//
+//                        Dialog s = (Dialog) dialog;
+//                        EditText eMailShare = (EditText) s.findViewById(R.id.editTextEMail);
+//
+//                        //Share Deck through Parse..
+//
+//                        Deck deck = new Deck();
+//
+//                        deck.setName(spinnerDeckNames.getSelectedItem().toString());
+//                        deck.setOwner(ParseUser.getCurrentUser());
+//                        deck.setDraft(true);
+//
+//                        //Share Deck through Parse..
+//
+//                        deck.saveEventually();
 
 
 //                        // Toast if successfully shared
@@ -114,13 +120,13 @@ public class ShareDeckDialogFragment extends android.support.v4.app.DialogFragme
 //                        // Toast if cannot find user to share with
 //                        Toast.makeText(getActivity(), "User Not Found", Toast.LENGTH_SHORT.show();
 
-                    }
-                })
-                .setNegativeButton("Cancel",new DialogInterface.OnClickListener() {
-                    public void onClick (DialogInterface dialog,int id){
-                        // User cancelled the dialog
-                }
-            });
+//                    }
+//                })
+//                .setNegativeButton("Cancel",new DialogInterface.OnClickListener() {
+//                    public void onClick (DialogInterface dialog,int id){
+//                        // User cancelled the dialog
+//                }
+//            });
 
                 // Create the AlertDialog object and return it
                 return builder.create();
