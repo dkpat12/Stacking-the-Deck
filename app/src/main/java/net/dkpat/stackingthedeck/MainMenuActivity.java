@@ -1,18 +1,10 @@
 package net.dkpat.stackingthedeck;
 
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.app.DialogFragment;
-import android.app.FragmentManager;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
+
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.Toolbar;
@@ -20,16 +12,13 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
 
 import net.dkpat.stackingthedeck.Model.Deck;
 import net.dkpat.stackingthedeck.Model.Flashcard;
 
-public class MainMenuActivity extends AppCompatActivity implements DeckFragment.OnDeckListFragmentInteractionListener,
-        FlashcardFragment.OnFlashCardListFragmentInteractionListener {
-    private Activity mActivity;
+
+public class MainMenuActivity extends AppCompatActivity implements DeckFragment.OnDeckFragmentListener,
+        FlashcardFragment.OnFlashCardListFragmentInteractionListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,23 +62,18 @@ public class MainMenuActivity extends AppCompatActivity implements DeckFragment.
         return super.onOptionsItemSelected(item);
     }
 
-
     @Override
-    public void onListFragmentInteraction(Deck item) {
-        return;
+    public void onDeckSelect(Deck item) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragmentContainer, FlashcardFragment.newInstance(item));
+        fragmentTransaction.commit();
     }
-
-
-    public void showDeckMenu(View v) {
-        PopupMenu popup = new PopupMenu(this, v);
-        MenuInflater inflater = popup.getMenuInflater();
-        inflater.inflate(R.menu.menu_deck_context, popup.getMenu());
-        popup.show();
-    }
-
 
     @Override
     public void onListFragmentInteraction(Flashcard item) {
         return;
     }
+
+
 }
