@@ -2,41 +2,31 @@ package net.dkpat.stackingthedeck;
 
 import android.content.Context;
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.view.ActionMode;
-import android.support.v7.widget.PopupMenu;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.Toast;
-
-import com.parse.FindCallback;
-import com.parse.GetCallback;
-import com.parse.ParseException;
-import com.parse.ParseObject;
+import android.widget.ListView;;
 import com.parse.ParseQuery;
 import com.parse.ParseQueryAdapter;
 import com.parse.ParseUser;
 
 import net.dkpat.stackingthedeck.Model.Deck;
-import net.dkpat.stackingthedeck.Model.Flashcard;
+
 import net.dkpat.stackingthedeck.helpers.DeckListAdapter;
 
 import java.util.ArrayList;
-import java.util.List;
+
 
 
 /**
@@ -49,12 +39,8 @@ public class DeckFragment extends Fragment {
 
     private OnDeckFragmentListener mListener;
     private DeckListAdapter adapter;
-    private ImageView imageView;
-    private ActionMode mActionMode;
-    private LayoutInflater inflater;
     private ParseQueryAdapter<Deck> DeckListAdapter;
     private ArrayList<Deck> arrayOfDecks;
-    private int currentI;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the

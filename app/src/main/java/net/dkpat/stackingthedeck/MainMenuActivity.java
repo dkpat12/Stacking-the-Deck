@@ -1,17 +1,12 @@
 package net.dkpat.stackingthedeck;
 
-
-import android.app.Fragment;
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import net.dkpat.stackingthedeck.Model.Deck;
 import net.dkpat.stackingthedeck.Model.Flashcard;
@@ -65,7 +60,6 @@ public class MainMenuActivity extends AppCompatActivity implements DeckFragment.
 
     @Override
     public void onListFragmentInteraction(Flashcard item) {
-        return;
     }
     
 }

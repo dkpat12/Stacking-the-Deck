@@ -1,18 +1,14 @@
 package net.dkpat.stackingthedeck.helpers;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.PopupMenu;
 import android.widget.TextView;
-
 import com.parse.ParseQueryAdapter;
 
-import net.dkpat.stackingthedeck.EditDeckActivity;
+
 import net.dkpat.stackingthedeck.Model.Deck;
 import net.dkpat.stackingthedeck.R;
 
@@ -21,12 +17,9 @@ import net.dkpat.stackingthedeck.R;
  */
 public class DeckListAdapter extends ParseQueryAdapter<Deck> {
 
-    private Context mContext;
-
     public DeckListAdapter(Context context,
                            ParseQueryAdapter.QueryFactory<Deck> queryFactory) {
         super(context, queryFactory);
-        mContext = context;
     }
 
     @Override

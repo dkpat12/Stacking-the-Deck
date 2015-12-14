@@ -69,28 +69,12 @@ public class AddDeckDialogFragment extends android.support.v4.app.DialogFragment
                         fTransaction.replace(R.id.fragmentContainer, DeckFragment.newInstance(), "DeckFragment");
                         fTransaction.commit();
 
-//                                (StackDeckApp.DECK_GROUP_NAME);
-
-//                                new SaveCallback() {
-//                                    @Override
-//                                    public void done(ParseException e) {
-//                                        if ()) {
-//                                            return;
-//                                        }
-//                                        if (e == null) {
-//                                            setResult(Activity.RESULT_OK);
-//                                            finish();
-//                                        } else {
-//                                            Toast.mak
-//                                        }
-//                                    }
-//                                })
-
                     }
                 })
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         // User cancelled the dialog
+                        
                     }
                 });
 
