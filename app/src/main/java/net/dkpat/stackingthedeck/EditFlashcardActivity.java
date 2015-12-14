@@ -30,7 +30,6 @@ public class EditFlashcardActivity extends AppCompatActivity {
     private TextView editTextTerm;
     private TextView editTextDefn;
     private Intent intent;
-    private Flashcard flashcard;
     private String term;
     private String defn;
     private Button btnSave;
@@ -45,16 +44,15 @@ public class EditFlashcardActivity extends AppCompatActivity {
 
         intent = getIntent();
 
-        flashcard = new Flashcard();
-
         editTextTerm = (TextView) findViewById(R.id.editTextTerm);
         editTextDefn = (TextView) findViewById(R.id.editTextDefn);
 
         ParseQuery<Flashcard> query = ParseQuery.getQuery("Flashcard");
         try {
             mFlashcard = query.get(flashcardId);
-            term = flashcard.getString("term");
-            defn = flashcard.getString("definition");
+            term = mFlashcard.getTerm();
+            defn = mFlashcard.getDefinition();
+
             editTextTerm.setText(term);
             editTextDefn.setText(defn);
         } catch (ParseException e) {
@@ -74,9 +72,9 @@ public class EditFlashcardActivity extends AppCompatActivity {
 
                 } else {
 
-                    flashcard.setTerm(term);
-                    flashcard.setDefinition(defn);
-                    flashcard.saveInBackground();
+                    mFlashcard.setTerm(term);
+                    mFlashcard.setDefinition(defn);
+                    mFlashcard.saveInBackground();
 
                     finish();
 

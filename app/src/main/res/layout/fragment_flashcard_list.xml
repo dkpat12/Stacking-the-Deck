@@ -12,6 +12,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="@dimen/fab_icon_size"
+        android:layout_marginTop="?attr/actionBarSize"
         android:scrollbars="vertical"
         tools:context="net.dkpat.stackingthedeck.FlashcardFragment"
         tools:listitem="@layout/fragment_flashcard_list_item" />
