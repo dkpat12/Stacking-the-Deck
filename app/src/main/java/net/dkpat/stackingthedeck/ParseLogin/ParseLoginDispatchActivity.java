@@ -10,6 +10,7 @@ import android.util.Log;
 
 import com.parse.Parse;
 import com.parse.ParseUser;
+import net.dkpat.stackingthedeck.R;
 
 
 /**

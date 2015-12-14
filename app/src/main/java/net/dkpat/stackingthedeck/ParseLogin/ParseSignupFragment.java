@@ -37,7 +37,7 @@ public class ParseSignupFragment extends com.parse.ui.ParseLoginFragmentBase imp
     private Button createAccountButton;
     private com.parse.ui.ParseOnLoginSuccessListener onLoginSuccessListener;
 
-    private com.parse.ui.ParseLoginConfig config;
+    private net.dkpat.stackingthedeck.ParseLogin.ParseLoginConfig config;
     private int minPasswordLength;
 
     private static final String LOG_TAG = "ParseSignupFragment";
@@ -58,7 +58,7 @@ public class ParseSignupFragment extends com.parse.ui.ParseLoginFragmentBase imp
                              Bundle savedInstanceState) {
 
         Bundle args = getArguments();
-        config = ParseLoginConfig.fromBundle(args, getActivity());
+        config = net.dkpat.stackingthedeck.ParseLogin.ParseLoginConfig.fromBundle(args, getActivity());
 
         minPasswordLength = DEFAULT_MIN_PASSWORD_LENGTH;
         if (config.getParseSignupMinPasswordLength() != null) {

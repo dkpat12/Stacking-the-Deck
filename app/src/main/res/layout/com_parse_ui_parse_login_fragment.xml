@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="@dimen/com_parse_ui_vertical_margin"
+    android:paddingLeft="@dimen/com_parse_ui_horizontal_margin"
+    android:paddingRight="@dimen/com_parse_ui_horizontal_margin"
+    android:paddingBottom="@dimen/com_parse_ui_vertical_margin"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="@color/colorPrimaryDark">
+
+    <include
+        layout="@layout/com_parse_ui_parse_login_app_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"/>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:id="@+id/parse_login"
+        android:background="@color/colorPrimaryDark">
+
+        <EditText
+            android:id="@+id/login_username_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/ParseLoginUI.EditText"
+            android:hint="@string/com_parse_ui_username_input_hint" />
+
+        <EditText
+            android:id="@+id/login_password_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/ParseLoginUI.EditText"
+            android:layout_marginTop="@dimen/com_parse_ui_small_vertical_spacing"
+            android:fontFamily="sans-serif"
+            android:hint="@string/com_parse_ui_password_input_hint"
+            android:inputType="textPassword"
+            android:selectAllOnFocus="true" />
+
+        <LinearLayout
+            android:id="@+id/parse_buttons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/com_parse_ui_large_vertical_spacing">
+
+            <Button
+                android:id="@+id/parse_login_button"
+                style="@style/ParseLoginUI.Button"
+                android:layout_weight="0.5"
+                android:text="@string/com_parse_ui_parse_login_button_label" />
+
+            <Button
+                android:id="@+id/parse_signup_button"
+                style="@style/ParseLoginUI.Button"
+                android:layout_marginLeft="@dimen/com_parse_ui_small_horizontal_spacing"
+                android:layout_weight="0.5"
+                android:text="@string/com_parse_ui_parse_signup_button_label" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/parse_login_help"
+            style="@style/ParseLoginUI.HelpButton"
+            android:layout_marginTop="@dimen/com_parse_ui_small_vertical_spacing"
+            android:layout_marginBottom="@dimen/com_parse_ui_small_vertical_spacing"
+            android:text="@string/com_parse_ui_forgot_password_button_label" />
+    </LinearLayout>
+</LinearLayout>

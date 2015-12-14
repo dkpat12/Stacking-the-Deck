@@ -18,6 +18,8 @@ import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.RequestPasswordResetCallback;
 import com.parse.ui.ParseLoginConfig;
+import net.dkpat.stackingthedeck.R;
+import com.parse.ui.ParseOnLoadingListener;
 
 /**
  * Fragment for the login help screen for resetting the user's password.

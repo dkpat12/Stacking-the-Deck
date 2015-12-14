@@ -19,7 +19,7 @@ import android.widget.TextView;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
-
+import net.dkpat.stackingthedeck.R;
 
 /**
  * Fragment for the user login screen.
@@ -43,8 +43,6 @@ public class ParseLoginFragment extends ParseLoginFragmentBase {
     private TextView parseLoginHelpButton;
     private Button parseLoginButton;
     private Button parseSignupButton;
-    private Button facebookLoginButton;
-    private Button twitterLoginButton;
     private ParseLoginFragmentListener loginFragmentListener;
     private ParseOnLoginSuccessListener onLoginSuccessListener;
 
@@ -236,33 +234,6 @@ public class ParseLoginFragment extends ParseLoginFragmentBase {
         }
         return result;
     }
-
-    private boolean allowFacebookLogin() {
-        if (!config.isFacebookLoginEnabled()) {
-            return false;
-        }
-
-        if (facebookLoginButton == null) {
-            debugLog(R.string.com_parse_ui_login_warning_disabled_facebook_login);
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    private boolean allowTwitterLogin() {
-        if (!config.isTwitterLoginEnabled()) {
-            return false;
-        }
-
-        if (twitterLoginButton == null) {
-            debugLog(R.string.com_parse_ui_login_warning_disabled_twitter_login);
-            return false;
-        } else {
-            return true;
-        }
-    }
-
     private void loginSuccess() {
         onLoginSuccessListener.onLoginSuccess();
     }
