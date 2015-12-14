@@ -24,7 +24,7 @@ public class FlashcardListAdapter extends ParseQueryAdapter<Flashcard> {
 
     @Override
     public View getItemView(Flashcard flashcard, View view, ViewGroup parent) {
-        ViewHolder holder;
+        final ViewHolder holder;
         final Flashcard mFlashcard = flashcard;
 
 
@@ -42,7 +42,8 @@ public class FlashcardListAdapter extends ParseQueryAdapter<Flashcard> {
 
         TextView FlashcardTerm = holder.mflashcardTerm;
         FlashcardTerm.setText(mFlashcard.getTerm());
-        TextView FlashcardDefinition = holder.mflashcardTerm;
+
+        TextView FlashcardDefinition = holder.mflashcardDefinition;
         FlashcardDefinition.setText(mFlashcard.getDefinition());
 
         return view;

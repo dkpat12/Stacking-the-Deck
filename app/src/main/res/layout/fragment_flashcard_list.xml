@@ -6,14 +6,14 @@
     <ListView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/flashcard_list"
-        android:name="net.dkpat.stackingthedeck.FlashCardFragment"
+        android:name="net.dkpat.stackingthedeck.FlashcardFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="@dimen/fab_icon_size"
         android:scrollbars="vertical"
-        tools:context=".FlashcardFragment"
+        tools:context="net.dkpat.stackingthedeck.FlashcardFragment"
         tools:listitem="@layout/fragment_flashcard_list_item" />
 
     <android.support.design.widget.FloatingActionButton

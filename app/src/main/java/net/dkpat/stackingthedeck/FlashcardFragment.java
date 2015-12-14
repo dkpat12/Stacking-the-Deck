@@ -73,7 +73,7 @@ public class FlashcardFragment extends Fragment {
         };
 
         Context context = view.getContext();
-        adapter = new FlashcardListAdapter(context, factory );
+        adapter = new FlashcardListAdapter(context, factory);
         // Set the adapter
         mList.setAdapter(adapter);
 
@@ -88,7 +88,6 @@ public class FlashcardFragment extends Fragment {
                 startActivity(intent);
             }
         });
-
 
         FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.flashcardfab);
         fab.setOnClickListener(new View.OnClickListener() {
