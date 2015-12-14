@@ -3,6 +3,7 @@ package net.dkpat.stackingthedeck;
 import android.content.Context;
 import android.media.Image;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -14,6 +15,7 @@ import android.view.Menu;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
+
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,6 +26,8 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
+
+import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -36,6 +40,7 @@ import net.dkpat.stackingthedeck.helpers.DeckListAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 /**
  * A fragment representing a list of Items.
@@ -121,6 +126,17 @@ public class DeckFragment extends Fragment {
             }
         });
 
+
+        FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AddDeckDialogFragment cdd = new AddDeckDialogFragment();
+                cdd.show(getActivity().getSupportFragmentManager(), "DeckDialogFragment");
+            }
+
+        });
+
         return view;
     }
 
@@ -151,15 +167,28 @@ public class DeckFragment extends Fragment {
     /**
      * This will be invoked when a menu item is selected
      */
+
+
+    public void refresh (){
+        adapter.notifyDataSetChanged();
+    }
+
     @Override
     public boolean onContextItemSelected(MenuItem item) {
 
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         int position = info.position;
 
+
         switch (item.getItemId()) {
             case R.id.action_delete:
                 Log.i("ContextMenu", "Item 1a was chosen");
+                Deck deck = adapter.getItem(position);
+                deck.deleteInBackground();
+                FragmentManager fManager = getFragmentManager();
+                FragmentTransaction fTransaction = fManager.beginTransaction();
+                fTransaction.replace(R.id.fragmentContainer, DeckFragment.newInstance(), "DeckFragment");
+                fTransaction.commit();
                 return true;
             case R.id.action_edit_deck:
                 Log.i("ContextMenu", "Item 1b was chosen");
@@ -169,16 +198,15 @@ public class DeckFragment extends Fragment {
                 fragmentTransaction.commit();
                 return true;
             case R.id.action_rename:
-                Log.i("ContextMenu", "Item 1b was chosen");
+                Log.i("ContextMenu", "Item 1c was chosen");
                 return true;
             case R.id.action_share:
-                Log.i("ContextMenu", "Item 1b was chosen");
+                Log.i("ContextMenu", "Item 1d was chosen");
                 return true;
             default:
-                Log.i("ContextMenu", "Item 1b was chosen");
+                Log.i("ContextMenu", "Item 1e was chosen");
                 return false;
         }
-
     }
 
 

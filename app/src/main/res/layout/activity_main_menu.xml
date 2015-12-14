@@ -16,17 +16,21 @@
     </android.support.design.widget.AppBarLayout>
 
     <RelativeLayout
+<<<<<<< HEAD
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/fragmentContainer">
 
     </RelativeLayout>
 
+=======
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/fragmentContainer">
 
-    <android.support.design.widget.FloatingActionButton android:id="@+id/fab"
-        android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end" android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/ic_deck_plus_outline_white_24dp" />
+    </RelativeLayout>
+>>>>>>> DeleteBranch
+
 
 </android.support.design.widget.CoordinatorLayout>
 

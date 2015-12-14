@@ -1,26 +1,38 @@
 package net.dkpat.stackingthedeck;
 
 
+<<<<<<< HEAD
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+=======
+import android.app.Fragment;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+>>>>>>> DeleteBranch
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.Toolbar;
-import android.view.MenuInflater;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+<<<<<<< HEAD
 import android.widget.AdapterView;
+=======
+import android.view.View;
+>>>>>>> DeleteBranch
 
 import net.dkpat.stackingthedeck.Model.Deck;
 import net.dkpat.stackingthedeck.Model.Flashcard;
 
 
 public class MainMenuActivity extends AppCompatActivity implements DeckFragment.OnDeckFragmentListener,
+<<<<<<< HEAD
         FlashcardFragment.OnFlashCardListFragmentInteractionListener{
+=======
+        FlashcardFragment.OnFlashCardListFragmentInteractionListener {
+>>>>>>> DeleteBranch
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +43,7 @@ public class MainMenuActivity extends AppCompatActivity implements DeckFragment.
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+<<<<<<< HEAD
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,6 +56,41 @@ public class MainMenuActivity extends AppCompatActivity implements DeckFragment.
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.fragmentContainer,new DeckFragment());
+=======
+//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Fragment currentFragment = getFragmentManager().findFragmentById(R.id.fragmentContainer);
+//                Fragment deckFragment = getFragmentManager().findFragmentByTag("DeckFragment");
+//                Fragment flashcardFragment = getFragmentManager().findFragmentByTag("FlashcardFragment");
+//
+//                if (deckFragment != null && deckFragment.isVisible()) {
+//                    AddDeckDialogFragment cdd = new AddDeckDialogFragment();
+//                    cdd.show(getSupportFragmentManager(), "DeckDialogFragment");
+//                }
+//                if (flashcardFragment != null && flashcardFragment.isVisible()) {
+//                    Intent intent = new Intent(getBaseContext(), EditFlashcardActivity.class);
+//                    startActivity(intent);
+//                }
+////                if (myFragment != null && myFragment.isVisible()) {
+////                    if (currentFragment instanceof (Fragment) DeckFragment){
+////                        AddDeckDialogFragment cdd = new AddDeckDialogFragment();
+////                        cdd.show(getSupportFragmentManager(), "String");
+////                    }
+////                    if (currentFragment instanceof CardFragment) {
+////                        EditFlashcardActivity cdd = new EditFlashcardActivity();
+////                        Intent intent = new Intent(getBaseContext(), EditFlashcardActivity.class);
+////                    startActivity(intent);
+////                }
+//            }
+//
+//        });
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragmentContainer, new DeckFragment(), "DeckFragment");
+>>>>>>> DeleteBranch
         fragmentTransaction.commit();
     }
 
