@@ -1,6 +1,5 @@
 package net.dkpat.stackingthedeck;
 
-import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,17 +9,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.GetCallback;
-import com.parse.Parse;
 import com.parse.ParseException;
-import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
-import net.dkpat.stackingthedeck.Model.Deck;
 import net.dkpat.stackingthedeck.Model.Flashcard;
-
-import java.awt.font.TextAttribute;
-
-import bolts.Task;
 
 /**
  * Created by C-Wo on 12/13/2015.
@@ -48,17 +40,22 @@ public class EditFlashcardActivity extends AppCompatActivity {
         editTextDefn = (TextView) findViewById(R.id.editTextDefn);
 
         ParseQuery<Flashcard> query = ParseQuery.getQuery("Flashcard");
-        try {
-            mFlashcard = query.get(flashcardId);
-            term = mFlashcard.getTerm();
-            defn = mFlashcard.getDefinition();
+        query.getInBackground(flashcardId, new GetCallback<Flashcard>() {
+            public void done(Flashcard flashcard, ParseException e) {
+                if (e == null) {
+                    mFlashcard = flashcard;
+                    term = mFlashcard.getTerm();
+                    defn = mFlashcard.getDefinition();
 
-            editTextTerm.setText(term);
-            editTextDefn.setText(defn);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
+                    editTextTerm.setText(term);
+                    editTextDefn.setText(defn);
+                } else {
+                    Toast.makeText(getApplicationContext(),
+                            "Something went wrong",
+                            Toast.LENGTH_LONG).show();
+                }
+            }
+        });
 
 
         btnSave = (Button) findViewById(R.id.btnSave);
