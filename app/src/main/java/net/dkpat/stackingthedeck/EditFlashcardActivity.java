@@ -26,6 +26,7 @@ public class EditFlashcardActivity extends AppCompatActivity {
     private String defn;
     private Button btnSave;
     private Flashcard mFlashcard;
+    private Button btnDelete;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -78,6 +79,8 @@ public class EditFlashcardActivity extends AppCompatActivity {
                 }
             }
         });
+
+        btnDelete = (Button)findViewById(R.id.btnDelete);
     }
 }
 //
